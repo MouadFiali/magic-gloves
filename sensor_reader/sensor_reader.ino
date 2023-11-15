@@ -10,7 +10,7 @@ int sensorMaxs[5] = {0, 0, 0, 0, 0};     // maximum sensor values
 void setup() {
 
     Serial.begin(9600);
-    Serial.print("Debut de calbiration");
+    Serial.print("Début de calbiration");
 
     // calibrate during the first five seconds
     while (millis() < 20000) {
@@ -29,10 +29,11 @@ void setup() {
         }
     }
 
-     Serial.print("Fin de calbiration");
+    Serial.print("Fin de calbiration");
 
+    // Verification of the calbiration values
     for (int i = 0; i < 5; i++) {
-        Serial.print("SenserValue du flex ");
+        Serial.print("SensorValue du flex ");
         Serial.print(i);
         Serial.print(" : ");
         Serial.println(sensorMins[i]);
@@ -48,10 +49,6 @@ void setup() {
         Serial.print(" : ");
         Serial.println(sensorMins[i]);
     }
-            
-
-
-
    
 }
 
@@ -71,8 +68,6 @@ void loop() {
         Serial.print(" : ");
         Serial.println(sensorValues[i]);
 
-        delay(1000); // Attendre 1 seconde (ajustez selon vos besoins)
-
-
     }
+    delay(1000); // Wait for 1 second before reading again
 }
