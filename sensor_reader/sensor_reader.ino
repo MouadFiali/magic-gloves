@@ -1,3 +1,9 @@
+#include "LSM6DS3.h"
+#include "Wire.h"
+
+//Create a instance of class LSM6DS3
+LSM6DS3 myIMU(I2C_MODE, 0x6A);    //I2C device address 0x6A
+
 // These constants won't change:
 const int sensorPins[] = {A0, A1, A2, A3, A4};  // pins that the sensors are attached to
 
@@ -6,14 +12,23 @@ int sensorValues[5] = {0, 0, 0, 0, 0};   // the sensor values
 int sensorMins[5] = {1023, 1023, 1023, 1023, 1023};  // minimum sensor values
 int sensorMaxs[5] = {0, 0, 0, 0, 0};     // maximum sensor values
 
+float accelValue[3] = {0, 0, 0}; // The accelerometer values
+float accelMin[3] = {1023, 1023, 1023}; // Minimum accelerometer values
+float accelMax[3] = {0, 0, 0}; // Maximum accelerometer values
+
+float gyroValue[3] = {0, 0, 0}; // The gyro values
+float gyroMin[3] = {1023, 1023, 1023}; // Minimum gyro values
+float gyroMax[3] = {0, 0, 0}; // Maximum gyro values
 
 void setup() {
 
     Serial.begin(9600);
-    Serial.print("Début de calbiration");
+    myIMU.begin();
+    Serial.println("Début de calibration");
 
-    // calibrate during the first five seconds
+    // calibrate during the first 20 seconds
     while (millis() < 20000) {
+        // Flex sensors
         for (int i = 0; i < 5; i++) {
             sensorValues[i] = analogRead(sensorPins[i]);
 
@@ -27,47 +42,88 @@ void setup() {
                 sensorMins[i] = sensorValues[i];
             }
         }
+
+        // Accelerometer
+        accelValue[0] = myIMU.readFloatAccelX();
+        accelValue[1] = myIMU.readFloatAccelY();
+        accelValue[2] = myIMU.readFloatAccelZ();
+        for (int i = 0; i < 3; i++){
+          // record the max accel values
+          if(accelValue[i] > accelMax[i]){
+            accelMax[i] = accelValue[i];
+          }
+
+          // record the min accel values
+          if(accelValue[i] < accelMin[i]){
+            accelMin[i] = accelValue[i];
+          }
+        }
+
+        // Gyro
+        gyroValue[0] = myIMU.readFloatGyroX();
+        gyroValue[1] = myIMU.readFloatGyroY();
+        gyroValue[2] = myIMU.readFloatGyroZ();
+        for (int i = 0; i < 3; i++){
+          // record the max gyro values
+          if(gyroValue[i] > gyroMax[i]){
+            gyroMax[i] = gyroValue[i];
+          }
+
+          // record the min gyro values
+          if(gyroValue[i] < gyroMin[i]){
+            gyroMin[i] = gyroValue[i];
+          }
+        }
     }
 
-    Serial.print("Fin de calbiration");
-
-    // Verification of the calbiration values
-    for (int i = 0; i < 5; i++) {
-        Serial.print("SensorValue du flex ");
-        Serial.print(i);
-        Serial.print(" : ");
-        Serial.println(sensorMins[i]);
-
-
-        Serial.print("Max du flex ");
-        Serial.print(i);
-        Serial.print(" : ");
-        Serial.println(sensorMaxs[i]);
-
-        Serial.print("Min du flex ");
-        Serial.print(i);
-        Serial.print(" : ");
-        Serial.println(sensorMins[i]);
-    }
-   
+    Serial.println("Fin de calibration");
 }
 
 void loop() {
-    for (int i = 0; i < 5; i++) {
+    // In 2 seconds, we should record 10 frames
+    unsigned long time = millis();
+    int ctr = 0;
+    while(millis() - time < 2100){
+      // Flex
+      for (int i = 0; i < 5; i++) {
         // read the sensor:
         sensorValues[i] = analogRead(sensorPins[i]);
-
         // in case the sensor value is outside the range seen during calibration
         sensorValues[i] = constrain(sensorValues[i], sensorMins[i], sensorMaxs[i]);
-
         // apply the calibration to the sensor reading
         sensorValues[i] = map(sensorValues[i], sensorMins[i], sensorMaxs[i], 0, 255);
+        Serial.print(sensorValues[i]);
+        Serial.print(",");
+      }
+      // Accelerometer
+      accelValue[0] = myIMU.readFloatAccelX();
+      accelValue[1] = myIMU.readFloatAccelY();
+      accelValue[2] = myIMU.readFloatAccelZ();
+      for (int i = 0; i < 3; i++){
+        accelValue[i] = constrain(accelValue[i], accelMin[i], accelMax[i]);
+        accelValue[i] = map(accelValue[i], accelMin[i], accelMax[i], -50, 50);
+        Serial.print(accelValue[i]);
+        Serial.print(",");
+      }
+      // Gyro
+      gyroValue[0] = myIMU.readFloatGyroX();
+      gyroValue[1] = myIMU.readFloatGyroY();
+      gyroValue[2] = myIMU.readFloatGyroZ();
+      for (int i = 0; i < 3; i++){
+        gyroValue[i] = constrain(gyroValue[i], gyroMin[i], gyroMax[i]);
+        gyroValue[i] = map(gyroValue[i], gyroMin[i], gyroMax[i], -50, 50);
+        Serial.print(gyroValue[i]);
+        if(ctr<20) Serial.print(",");
+      }
 
-        Serial.print("Valeur du capteur de flexion ");
-        Serial.print(i);
-        Serial.print(" : ");
-        Serial.println(sensorValues[i]);
+      // add 
+      ctr++;
 
+      // Delay 100ms so we can get 20 frames (10 frames/s)
+      delay(100);
     }
-    delay(1000); // Wait for 1 second before reading again
+    Serial.println("");
+
+
+    delay(1900); // Wait for 1 second before reading again
 }
