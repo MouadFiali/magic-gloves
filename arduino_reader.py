@@ -1,10 +1,11 @@
 import serial
-import csv
+import threading
 
-# Read the data sent by Arduino to the serial port COM
-ser = serial.Serial('COM7', 9600) 
+serial_4_data = ''
+serial_7_data = ''
 
 def format_data(data):
+    data = data[:-1]
     data = data.split(',')
     flex_data = [[] for i in range(5)]
     position_data = []
@@ -14,36 +15,64 @@ def format_data(data):
     while(i < len(data)):
         for j in range(5):
             flex_data[j].append(data[i+j])
-            print(i+j)
         i = i + 5
 
         for j in range(3):
             position_data.append(data[i+j])
-            print(i+j)
         i = i + 3
 
         for j in range(3):
             orientation_data.append(data[i+j])
-            print(i+j)
         i = i + 3
-        
 
-    return flex_data + position_data + orientation_data
+    # Add the data in one string to write in the CSV file
+    line = ''
+    for i in range(5):
+        for j in range(len(flex_data[i])):
+            line += flex_data[i][j] + ','
+    for i in range(len(position_data)):
+        line += position_data[i] + ','
+    for i in range(len(orientation_data)):
+        line += orientation_data[i] + ','        
+
+    return line[:-1]
+
+def read_data(serial_port, port_number):
+    print("Thread started")
+    if port_number == 4:
+        global serial_4_data
+        serial_4_data = serial_port.readline().decode('utf-8').strip()
+    elif port_number == 7:
+        global serial_7_data
+        serial_7_data = serial_port.readline().decode('utf-8').strip()
+    print("Thread ended")
+    
+# Read the data sent by Arduino to the serial port COM
+input('Appuyez sur une touche pour commencer...')
+ser = serial.Serial('COM7', 9600)
+ser2 = serial.Serial('COM4', 9600)
+
+
             
 # Create and open a CSV file for writing
 while True:
-    data = ser.readline().decode('utf-8').strip()
-    print(data)
-    if data and data != 'Début de calibration' and data != 'Fin de calibration':
+    my_data = ''
+    thread_serial_7 = threading.Thread(target=read_data, args=(ser,7))
+    thread_serial_4 = threading.Thread(target=read_data, args=(ser2,4))
+    thread_serial_4.start()
+    thread_serial_7.start()
+    thread_serial_4.join()
+    thread_serial_7.join()
+    
+    my_data = serial_7_data + serial_4_data
+    if my_data and str(serial_4_data) != 'Debut de calibration' and str(serial_4_data) != 'Fin de calibration':
         with open('sensor_data.csv', 'a', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(format_data(data))
-            print(data)
-    elif data == 'Début de calibration':
+            csvfile.write(format_data(my_data) + '\n')
+    elif serial_7_data == 'Debut de calibration':
         print('Calibration en cours...')
-    elif data == 'Fin de calibration':
-        print('Calibration terminée')
+    elif serial_7_data == 'Fin de calibration':
+        print('Calibration terminee')
 
-# data = "194,143,111,170,189,-17.00,50.00,-25.00,26.00,25.00,4.00,192,146,113,174,189,-17.00,50.00,-25.00,43.00,31.00,-4.00,194,143,113,176,189,-17.00,50.00,-25.00,50.00,46.00,-3.00,194,145,115,178,189,-17.00,50.00,-25.00,50.00,48.00,-1.00,186,148,115,183,189,-17.00,50.00,-25.00,31.00,31.00,8.00,192,150,113,181,189,-17.00,50.00,-25.00,11.00,14.00,10.00,198,155,117,185,189,-17.00,50.00,-25.00,29.00,7.00,-7.00,204,158,120,190,189,-17.00,50.00,-25.00,50.00,-50.00,-50.00,214,162,128,194,189,-17.00,50.00,-25.00,-7.00,34.00,-9.00,212,179,141,216,196,-17.00,50.00,-25.00,25.00,12.00,16.00,214,184,154,223,189,-17.00,50.00,-25.00,18.00,26.00,4.00,225,211,184,234,189,-17.00,50.00,0.00,50.00,-1.00,-45.00,241,227,201,243,189,-17.00,50.00,0.00,4.00,13.00,-13.00,243,227,207,241,189,-17.00,50.00,0.00,19.00,14.00,24.00,243,227,205,243,196,-17.00,50.00,-25.00,-2.00,29.00,-6.00,245,224,201,243,189,-17.00,50.00,-25.00,21.00,16.00,-4.00,245,231,203,243,189,-17.00,50.00,0.00,15.00,50.00,17.00,243,226,203,241,196,-17.00,50.00,-25.00,-12.00,-14.00,-20.00,247,222,201,243,189,-17.00,50.00,-25.00,8.00,17.00,1.00"
+# data = "225,198,131,0,223,16.00,16.00,-34.00,-2.00,-2.00,-1.00,228,196,133,0,217,16.00,16.00,-34.00,-4.00,0.00,-1.00,226,197,131,0,217,16.00,16.00,-34.00,-4.00,4.00,0.00,226,197,132,0,217,16.00,16.00,-34.00,-6.00,5.00,2.00,228,196,131,0,217,16.00,16.00,-34.00,-6.00,5.00,3.00,228,196,132,0,217,16.00,16.00,-34.00,-6.00,0.00,1.00,225,197,130,0,217,16.00,16.00,-34.00,-8.00,3.00,3.00,228,196,131,0,223,16.00,16.00,-34.00,-6.00,6.00,3.00,226,196,131,0,217,16.00,16.00,-34.00,-6.00,2.00,2.00,229,197,132,0,223,16.00,16.00,-34.00,-6.00,2.00,2.00,226,197,130,0,223,16.00,16.00,-34.00,-6.00,4.00,2.00,228,197,131,0,223,16.00,16.00,-34.00,-6.00,5.00,2.00,226,198,132,0,217,16.00,16.00,-34.00,-6.00,4.00,2.00,226,197,131,0,217,16.00,16.00,-34.00,-7.00,11.00,7.00,226,197,131,0,223,16.00,16.00,-34.00,-18.00,14.00,23.00,228,197,130,0,223,16.00,16.00,-34.00,-24.00,43.00,3.00,225,196,130,0,223,16.00,16.00,-28.00,19.00,50.00,50.00,228,198,133,0,217,33.00,16.00,-34.00,-19.00,5.00,29.00,228,197,132,0,223,16.00,16.00,-34.00,-3.00,1.00,-16.00,229,197,133,0,223,16.00,16.00,-34.00,-5.00,5.00,-5.00,"
 
 # print(format_data(data))

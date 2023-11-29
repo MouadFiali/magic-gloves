@@ -25,10 +25,10 @@ columns_right = [
 ]
 
 # Combine right and right arm columns
-columns = columns_right + columns_left
+columns = columns_left + columns_right
 
 # Initialize the CSV file with the column names
 with open("sensor_data.csv", "w", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(columns_right)
-print(columns_right)
+    writer.writerow(columns)
+print("CSV file initialized")

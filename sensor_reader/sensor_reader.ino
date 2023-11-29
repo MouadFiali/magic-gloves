@@ -24,7 +24,7 @@ void setup() {
 
     Serial.begin(9600);
     myIMU.begin();
-    Serial.println("Début de calibration");
+    Serial.println("Debut de calibration");
 
     // calibrate during the first 20 seconds
     while (millis() < 20000) {
@@ -82,8 +82,10 @@ void setup() {
 void loop() {
     // In 2 seconds, we should record 10 frames
     unsigned long time = millis();
-    int ctr = 0;
-    while(millis() - time < 2100){
+    for(int j = 0; j < 20; j++){
+      // delay time
+      unsigned long delayTime = millis();
+
       // Flex
       for (int i = 0; i < 5; i++) {
         // read the sensor:
@@ -113,16 +115,17 @@ void loop() {
         gyroValue[i] = constrain(gyroValue[i], gyroMin[i], gyroMax[i]);
         gyroValue[i] = map(gyroValue[i], gyroMin[i], gyroMax[i], -50, 50);
         Serial.print(gyroValue[i]);
-        if(ctr<20) Serial.print(",");
+        Serial.print(",");
       }
 
-      // add 
-      ctr++;
-
-      // Delay 100ms so we can get 20 frames (10 frames/s)
-      delay(100);
+      delayTime = millis() - delayTime;
+      if(delayTime < 100){
+        delay(100 - delayTime);
+      }
     }
     Serial.println("");
+    // Serial.print("Execution time: ");
+    // Serial.println(millis() - time);
 
 
     delay(1900); // Wait for 1 second before reading again
