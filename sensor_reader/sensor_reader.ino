@@ -52,7 +52,6 @@ void setup() {
 
     }
 
-    Serial.print(" Number Readings: "); Serial.println(numReadings);
 
     accelOffset[0] /= numReadings;
     accelOffset[1] /= numReadings;
@@ -65,6 +64,7 @@ void setup() {
 }
 
 void loop() {
+    Serial.println("Debut Enregistrement...");
     // In 2 seconds, we should record 10 frames
     unsigned long time = millis();
     for(int j = 0; j < 20; j++){
@@ -102,11 +102,12 @@ void loop() {
       Serial.print(gyroY);
       Serial.print(",");
       Serial.print(gyroZ);
+      Serial.print(",");
       
 
       delayTime = millis() - delayTime;
-      if(delayTime < 100){
-        delay(100 - delayTime);
+      if(delayTime < 150){
+        delay(150 - delayTime);
       }
     }
     Serial.println("");
@@ -114,5 +115,5 @@ void loop() {
     // Serial.println(millis() - time);
 
 
-    delay(1900); // Wait for 1 second before reading again
+    delay(3850); // Wait for 4 second before reading again
 }
