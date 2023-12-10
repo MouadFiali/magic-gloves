@@ -1,5 +1,6 @@
 #include "LSM6DS3.h"
 #include "Wire.h"
+#define sensitivity 8.75
 
 //Create a instance of class LSM6DS3
 LSM6DS3 myIMU(I2C_MODE, 0x6A);    //I2C device address 0x6A
@@ -14,17 +15,61 @@ int sensorMaxs[5] = {0, 0, 0, 0, 0};     // maximum sensor values
 int numReadings = 0 ;
 
 // Variables pour stocker les valeurs de calibration
-float accelOffset[3] = {0, 0, 0};
-float gyroOffset[3] = {0, 0, 0};
+float RateRoll, RatePitch, RateYaw;
+float RateCalibrationRoll, RateCalibrationPitch, RateCalibrationYaw;
+float AccX, AccY, AccZ;
+float AccCalibrationX, AccCalibrationY, AccCalibrationZ;
+int calibrationNumber = 0;
+
+void readAccGyro(void) {
+    // Read gyro values from LSM6DS3
+    RateRoll = myIMU.readFloatGyroX() / sensitivity;
+    RatePitch = myIMU.readFloatGyroY() / sensitivity;
+    RateYaw = myIMU.readFloatGyroZ() / sensitivity;
+
+    // Read accelerometer values
+    AccX = myIMU.readFloatAccelX();
+    AccY = myIMU.readFloatAccelY();
+    AccZ = myIMU.readFloatAccelZ();
+}
 
 void setup() {
 
     Serial.begin(9600);
+    Wire.begin();
     myIMU.begin();
-    Serial.println("Debut de calibration");
+
+    // Calibrate the sensors
+    RateCalibrationRoll = RateCalibrationPitch = RateCalibrationYaw = 0;
+    AccCalibrationX = AccCalibrationY = AccCalibrationZ = 0;
+
+    Serial.println("Debut de calibration AccGyro");
+    unsigned long time = millis();
     // calibrate during the first 20 seconds
-    while (millis() < 20000) {
-        numReadings = numReadings +1 ;
+    while (millis() - time < 10000) {
+      calibrationNumber++;
+      readAccGyro();
+      RateCalibrationRoll += RateRoll;
+      RateCalibrationPitch += RatePitch;
+      RateCalibrationYaw += RateYaw;
+      AccCalibrationX += AccX;
+      AccCalibrationY += AccY;
+      AccCalibrationZ += AccZ;
+      delay(1);
+    }
+
+    RateCalibrationRoll /= calibrationNumber;
+    RateCalibrationPitch /= calibrationNumber;
+    RateCalibrationYaw /= calibrationNumber;
+    AccCalibrationX /= calibrationNumber;
+    AccCalibrationY /= calibrationNumber;
+    AccCalibrationZ /= calibrationNumber;
+
+    Serial.println("Debut de calibration Flex");
+
+    time = millis();
+    while (millis() - time < 10000) {
+        numReadings++;
         // Flex sensors
         for (int i = 0; i < 5; i++) {
             sensorValues[i] = analogRead(sensorPins[i]);
@@ -39,26 +84,7 @@ void setup() {
                 sensorMins[i] = sensorValues[i];
             }
         }
-
-        // Accelerometer
-        accelOffset[0] += myIMU.readFloatAccelX();
-        accelOffset[1] += myIMU.readFloatAccelY();
-        accelOffset[2] += myIMU.readFloatAccelZ();
-
-        // Gyro
-        gyroOffset[0] += myIMU.readFloatGyroX();
-        gyroOffset[1] += myIMU.readFloatGyroY();
-        gyroOffset[2] += myIMU.readFloatGyroZ();
-
     }
-
-
-    accelOffset[0] /= numReadings;
-    accelOffset[1] /= numReadings;
-    accelOffset[2] -= 1.0;
-    gyroOffset[0] /= numReadings;
-    gyroOffset[1] /= numReadings;
-    gyroOffset[2] /= numReadings;
 
     Serial.println("Fin de calibration");
 }
@@ -82,26 +108,31 @@ void loop() {
         Serial.print(sensorValues[i]);
         Serial.print(",");
       }
-      // Accelerometer
-      float accelX = myIMU.readFloatAccelX() - accelOffset[0];
-      float accelY = myIMU.readFloatAccelY() - accelOffset[1];
-      float accelZ = myIMU.readFloatAccelZ() - accelOffset[2];
-      Serial.print(accelX);
+      
+      readAccGyro();
+    
+      // Subtract calibration values from the current reading
+      RateRoll -= RateCalibrationRoll;
+      RatePitch -= RateCalibrationPitch;
+      RateYaw -= RateCalibrationYaw;
+      AccX -= AccCalibrationX;
+      AccY -= AccCalibrationY;
+      AccZ -= AccCalibrationZ;
+
+      // Acceleration (Position wannabe)
+      Serial.print(RateRoll);
       Serial.print(",");
-      Serial.print(accelY);
+      Serial.print(RatePitch);
       Serial.print(",");
-      Serial.print(accelZ);
+      Serial.print(RateYaw);
       Serial.print(",");
 
-      // Gyro
-      float gyroX = myIMU.readFloatGyroX() - gyroOffset[0];
-      float gyroY = myIMU.readFloatGyroY() - gyroOffset[1];
-      float gyroZ = myIMU.readFloatGyroZ() - gyroOffset[2];
-      Serial.print(gyroX);
+      // Orientation (GYRO)
+      Serial.print(AccX);
       Serial.print(",");
-      Serial.print(gyroY);
+      Serial.print(AccY);
       Serial.print(",");
-      Serial.print(gyroZ);
+      Serial.print(AccZ);
       Serial.print(",");
       
 
