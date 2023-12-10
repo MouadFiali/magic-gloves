@@ -49,7 +49,9 @@ def read_data(serial_port, port_number):
     
 # Read the data sent by Arduino to the serial port COM
 input('Appuyez sur une touche pour commencer...')
+# LEFT
 ser = serial.Serial('COM7', 9600)
+# RIGHT
 ser2 = serial.Serial('COM4', 9600)
 
 
@@ -65,13 +67,15 @@ while count < 20:
     thread_serial_4.join()
     thread_serial_7.join()
     
-    if str(serial_4_data) != 'Debut de calibration' and str(serial_4_data) != 'Fin de calibration' and str(serial_4_data) != 'Debut Enregistrement...' :
+    if str(serial_4_data) != 'Debut de calibration AccGyro' and str(serial_4_data) != 'Debut de calibration Flex' and str(serial_4_data) != 'Fin de calibration' and str(serial_4_data) != 'Debut Enregistrement...' :
         my_data = format_data(serial_7_data) + ',' + format_data(serial_4_data) + ',' + 'THANK YOU'
         with open('sensor_data.csv', 'a', newline='') as csvfile:
             csvfile.write(my_data + '\n')
             count += 1
-    elif serial_4_data == 'Debut de calibration':
-        print('Calibration en cours...')
+    elif serial_4_data == 'Debut de calibration AccGyro':
+        print('Calibration AccGyro en cours...')
+    elif serial_4_data == 'Debut de calibration Flex':
+        print('Calibration Flex en cours...')
     elif serial_4_data == 'Fin de calibration':
         print('Calibration terminee')
     elif serial_4_data == 'Debut Enregistrement...':
