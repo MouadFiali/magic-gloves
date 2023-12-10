@@ -90,6 +90,8 @@ void setup() {
 }
 
 void loop() {
+    delay(3850); // Wait for 4 second before reading again
+    
     Serial.println("Debut Enregistrement...");
     // In 2 seconds, we should record 10 frames
     unsigned long time = millis();
@@ -146,5 +148,4 @@ void loop() {
     // Serial.println(millis() - time);
 
 
-    delay(3850); // Wait for 4 second before reading again
 }

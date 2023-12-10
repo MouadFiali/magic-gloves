@@ -30,5 +30,5 @@ columns = columns_left + columns_right
 # Initialize the CSV file with the column names
 with open("sensor_data.csv", "w", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(columns)
+    writer.writerow(columns + ["SIGN"])
 print("CSV file initialized")
