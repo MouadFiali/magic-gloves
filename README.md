@@ -11,11 +11,11 @@
 ## Data Collection
 Unfortunately, we were unable to find a dataset containing the data of the sensors we used. Therefore, we had to collect our own data. We used the **Arduino Uno** along with flex sensors and an accelerometer/gyroscope to collect data.
 
-In order to collect data, an arduino sketch was written to collect data from the sensors and send it to the serial monitor. Which is done by the file [`sensor_reader.ino`]("https://github.com/MouadFiali/magic-gloves/blob/main/sensor_reader/sensor_reader.ino"). Which includes a calibration phase to calibrate the sensors and a data collection phase to collect the data and write it as a comma separated values to make it easier to read by the python script.
+In order to collect data, an arduino sketch was written to collect data from the sensors and send it to the serial monitor. Which is done by the file [`sensor_reader.ino`](sensor_reader/sensor_reader.ino). Which includes a calibration phase to calibrate the sensors and a data collection phase to collect the data and write it as a comma separated values to make it easier to read by the python script.
 
-The data is then read by the python script [`data_collector.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/data_collection/data_collector.py") which reads the data from the serial monitor, formats it to fit the columns structure of the wanted dataset, and writes it to a csv file along with the label of the name of the sign. 
+The data is then read by the python script [`data_collector.py`](data_collection/data_collector.py) which reads the data from the serial monitor, formats it to fit the columns structure of the wanted dataset, and writes it to a csv file along with the label of the name of the sign. 
 
-**Note:** The file [`dataset_initializer.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/data_collection/dataset_initializer.py") is used to initialize the dataset by creating the csv file and writing the column names to it (441 columns which are the readings of the each used sensor for 20 frames, and the label column).
+**Note:** The file [`dataset_initializer.py`](data_collection/dataset_initializer.py) is used to initialize the dataset by creating the csv file and writing the column names to it (441 columns which are the readings of the each used sensor for 20 frames, and the label column).
 
 The dataset is uploaded to **Kaggle** and can be found [here](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition).
 
@@ -23,14 +23,14 @@ The dataset is uploaded to **Kaggle** and can be found [here](https://www.kaggle
 The machine learning models are trained using the dataset collected in the previous step.
 
 3 models were trained:
-- **Recurrent Neural Network**: Which is done by the file [`rnn.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/models/rnn.py")
-- **Long Short-Term Memory**: Which is done by the file [`lstm.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/models/lstm.py")
-- **Gated Recurrent Units**: Which is done by the file [`gru.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/models/gru.py")
+- **Recurrent Neural Network**: Which is done by the file [`rnn.py`](models/rnn.py)
+- **Long Short-Term Memory**: Which is done by the file [`lstm.py`](models/lstm.py)
+- **Gated Recurrent Units**: Which is done by the file [`gru.py`](models/gru.py)
 
 Each file contains the code for preprocessing the data, training the model, and testing the model. The models are then saved to be easily loaded and used in the next step.
 
 ## Hardware-Software Integration
-The hardware-software integration is done using the python script [`predict.py`]("https://github.com/MouadFiali/magic-gloves/blob/main/predict.py") which loads the trained model and uses it to predict the sign being made by the user.
+The hardware-software integration is done using the python script [`predict.py`](predict.py) which loads the trained model and uses it to predict the sign being made by the user.
 
 It is possible to use any of the 3 models trained in the previous step. The model to be used can be changed by changing the following line in the script:
 ```python
@@ -50,7 +50,7 @@ The models were also able to predict the signs in real-time with no noticeable m
 
 - This README file is not final and will be updated regularly to include more information about the project.
 
-- In order to run the python scripts, you will need to change the ports names (numbers) in the scripts to match the port which the arduino is connected to. This can be done by changing the following lines in the scripts:
+- In order to run the python scripts ([`data_collector.py`](data_collection/data_collector.py) & [`predict.py`](predict.py)), you will need to change the ports names (numbers) in the scripts to match the port which the arduino is connected to. This can be done by changing the following lines in the scripts:
 ```python
 # LEFT 
 ser = serial.Serial('COM7', 9600)
