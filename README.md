@@ -27,9 +27,9 @@ Pour la réalisation de nos gants de traduction du langage des signes, nous avon
 - **Arduino UNO** : Deux cartes Arduino UNO servent de plateforme de contrôle et de traitement des signaux provenant des capteurs.
 - **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
 
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="100">
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="100">
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="100">
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="400">
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="400">
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="400">
 
 ## Scénario d’utilisation
 
