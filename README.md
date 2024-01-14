@@ -28,9 +28,9 @@ Pour la réalisation de nos gants de traduction du langage des signes, nous avon
 - **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
 
 <div style="display:flex;">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="600">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="600">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="600">
+    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="500">
+    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="500">
+    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="500">
 </div>
 
 ## Scénario d’utilisation
