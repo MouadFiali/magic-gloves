@@ -59,11 +59,11 @@ Voici le déroulement typique d'utilisation de nos gants de traduction du langag
 
 ### Schéma logique d’utilisation
 
-![Schema logique d’utilisation](https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Schema_logic.png)
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Schema_logic.png" width="500">
 
 ### Diagramme de séquence
 
-![Diagramme de séquence](https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png)
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png" width="500">
 
 ## Budget
 
