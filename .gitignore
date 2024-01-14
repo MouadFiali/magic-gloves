@@ -1,3 +1,9 @@
 data_verifier.py
 dataset
-sensor_data_eda.ipynb
+nlp.py
+*-env
+.env
+__pycache__
+*.h5
+*.joblib
+*.txt
