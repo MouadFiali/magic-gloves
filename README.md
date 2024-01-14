@@ -1,59 +1,75 @@
 # Magic Gloves
 ## Description
-"Magic Gloves" is an innovative project aimed at translating sign language into spoken language using smart gloves equipped with sensors. This technology captures the intricate movements and positions of sign language and translates them into words, bridging communication gaps for the deaf and hard-of-hearing community. Our GitHub repository documents the development journey, including data collection, machine learning models, and hardware-software integration, showcasing our commitment to enhancing accessibility through AI and IoT.
+Notre projet vise à créer un pont de communication pour les personnes sourdes, muettes ou ayant des difficultés à parler. Nous avons développé des gants innovants capables de traduire le langage des signes en texte écrit, rendant la communication avec le grand public fluide et compréhensible. 
 
-## Table of Contents
-- [Data Collection](#data-collection)
-- [Machine Learning Models](#machine-learning-models)
-- [Hardware-Software Integration](#hardware-software-integration)
-- [Notes](#notes)
+### Membres de l'Équipe
++ FIALI Mouad
++ GHAZAOUI Badr
++ MAROUANE Kamal
++ RIMAOUI Nabila
++ ZERKTOUNI Ismail
 
-## Data Collection
-Unfortunately, we were unable to find a dataset containing the data of the sensors we used. Therefore, we had to collect our own data. We used the **Arduino Uno** along with flex sensors and an accelerometer/gyroscope to collect data.
 
-In order to collect data, an arduino sketch was written to collect data from the sensors and send it to the serial monitor. Which is done by the file [`sensor_reader.ino`](sensor_reader/sensor_reader.ino). Which includes a calibration phase to calibrate the sensors and a data collection phase to collect the data and write it as a comma separated values to make it easier to read by the python script.
+## Problématique
+Le langage des signes est un outil de communication essentiel pour les personnes sourdes, muettes ou ayant des difficultés de parole. Cependant, il constitue un défi majeur : sa maîtrise reste peu répandue dans la population générale, ce qui crée un obstacle significatif à l'intégration sociale et professionnelle des personnes dépendant de cette forme de communication.
 
-The data is then read by the python script [`data_collector.py`](data_collection/data_collector.py) which reads the data from the serial monitor, formats it to fit the columns structure of the wanted dataset, and writes it to a csv file along with the label of the name of the sign. 
+Notre projet aborde cette problématique en fournissant une solution technologique qui permet de traduire le langage des signes en langage écrit. Cette innovation vise à briser les barrières de communication, facilitant ainsi l'interaction et l'intégration des personnes sourdes ou muettes dans la société. En transformant les gestes en texte, nous créons un pont entre deux mondes, permettant une compréhension mutuelle et une interaction enrichissante pour tous.
 
-**Note:** The file [`dataset_initializer.py`](data_collection/dataset_initializer.py) is used to initialize the dataset by creating the csv file and writing the column names to it (441 columns which are the readings of the each used sensor for 20 frames, and the label column).
 
-The dataset is uploaded to **Kaggle** and can be found [here](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition).
+## Matériel Utilisé
+Pour la réalisation de nos gants de traduction du langage des signes, nous avons utilisé les composants suivants :
+- **Capteurs de Flexion** : Chaque gant est équipé de 5 capteurs de flexion, permettant de détecter et de mesurer les mouvements des doigts.
+- **Capteurs Accéléromètre/Gyroscope** : Chaque main est équipé d'un capteur accéléromètre/gyroscope utilisé pour capter les mouvements et l'orientation de la main dans l'espace.
+- **Arduino UNO** : Deux cartes Arduino UNO servent de plateforme de contrôle et de traitement des signaux provenant des capteurs.
+- **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
+  
 
-## Machine Learning Models
-The machine learning models are trained using the dataset collected in the previous step.
+## Scénario d’utilisation
+Voici le déroulement typique d'utilisation de nos gants de traduction du langage des signes :
 
-3 models were trained:
-- **Recurrent Neural Network**: Which is done by the file [`rnn.py`](models/rnn.py)
-- **Long Short-Term Memory**: Which is done by the file [`lstm.py`](models/lstm.py)
-- **Gated Recurrent Units**: Which is done by the file [`gru.py`](models/gru.py)
+1. **Mise en Place et Calibration :**
++ L'utilisateur démarre une phase de calibration de 10 secondes pour les capteurs gyroscopiques/accéléromètres, permettant de les ajuster à ses mouvements spécifiques.
++ Suit une seconde phase de calibration, également de 10 secondes, pour les capteurs de flexion, afin de calibrer les courbures des doigts.
 
-Each file contains the code for preprocessing the data, training the model, and testing the model. The models are then saved to be easily loaded and used in the next step.
+2. **Enregistrement et Traduction des Mouvements :**
++ L'utilisateur effectue des gestes en langage des signes.
++ Les gants captent les mouvements et les transmettent en temps réel aux cartes Arduino UNO.
++ Les données sont envoyées à l'ordinateur où le modèle d'IA analyse et traduit les gestes en texte écrit.
+  
+3. **Pause et Préparation pour le Mouvement Suivant :**
++ Après chaque geste, une pause de 4 secondes est observée. Cette période permet à l'utilisateur de se préparer pour le signe suivant et assure que les mouvements soient clairement délimités et correctement interprétés.
 
-## Hardware-Software Integration
-The hardware-software integration is done using the python script [`predict.py`](predict.py) which loads the trained model and uses it to predict the sign being made by the user.
+4. **Formation de Phrases et Correction Grammaticale :**
++ Les mots traduits sont assemblés en phrases complètes et cohérentes : des outils de traitement du langage naturel (NLP) sont utilisés pour affiner la structure grammaticale et s'assurer que le texte final est clair et précis.
 
-It is possible to use any of the 3 models trained in the previous step. The model to be used can be changed by changing the following line in the script:
-```python
-new_model = load_model('rnn_model.h5')
-```
 
-It reads the data from the serial monitor in a similar way to the data collection step, preprocesses it, and uses the model to predict the sign. This process is done in a loop to continuously predict the signs being made by the user.
+## Budget
+Une étude budgétaire des composants par rapport aux prix trouvables sur internet nous indique les prix suivant :
++ Gants : 10 €
++ Capteurs de Flexion : 100 € (pour 10 capteurs)
++ Modules Accéléromètre/Gyroscope : 40 € (pour 2 modules)
++ Cartes Arduino UNO : 50 € (pour 2 cartes)
++ Matériel de Connexion (câbles, connecteurs, etc.) : 20 €
 
-As a first result, the models were able to predict the signs with a maximum shocking accuracy of **100%** for the **RNN** model. However, this result is not final and It probably is high due to the small size of the dataset.
+Concernant le budget horaire, avec une considération approximative des temps de travail cumulés et d’un taux horaire du SMIC, on arrive au détail des heures suivantes :
++ Brainstorming : 4 h
++ Formation : 8 h
++ Assemblage des gants : 10 h
++ Développement Software (algorithme de calibrage, de collecte de données et de modèles IA) : 30 h
+Sous-total au SMIC 605.8 €
 
-The models were also able to predict the signs in real-time with no noticeable mistakes. However, the models are not yet ready to be used in real-life situations as they are still in the early stages of development.
+**Total Estimatif** : 825,8 EUR
 
-## Notes
-- This project is still under development and is not yet complete. We are still working on improving the models, the dataset, and the hardware-software integration.
 
-- The dataset posted on Kaggle is not yet complete and is still being collected.
+## Bilan
+Notre projet a considérablement avancé vers l'objectif de permettre aux personnes sourdes ou muettes de communiquer via le langage des signes traduit en texte. La précision de traduction de 99% témoigne de l'efficacité des gants et du modèle d'IA que nous avons développés. Les résultats encourageants soulignent le potentiel d'amélioration et de commercialisation futur.
 
-- This README file is not final and will be updated regularly to include more information about the project.
 
-- In order to run the python scripts ([`data_collector.py`](data_collection/data_collector.py) & [`predict.py`](predict.py)), you will need to change the ports names (numbers) in the scripts to match the port which the arduino is connected to. This can be done by changing the following lines in the scripts:
-```python
-# LEFT 
-ser = serial.Serial('COM7', 9600)
-# RIGHT
-ser2 = serial.Serial('COM4', 9600)
-```
+## Pistes d'Amélioration
+Pour la suite, nous envisageons plusieurs axes d'amélioration qui augmenteraient considérablement la portée et l'utilité de nos gants de traduction du langage des signes :
++ **Traduction en Audio** : Afin d'améliorer le produit, il serait utile d'intégrer une fonctionnalité de synthèse vocale qui convertirait le texte traduit en parole, rendant la communication encore plus accessible et naturelle.
++ **Traduction Inverse** : Un autre développement majeur serait la traduction de la langue orale en texte écrit. Cela permettrait une conversation bidirectionnelle, où la parole peut être traduite en texte pour les personnes sourdes ou ayant des difficultés à entendre.
++ **Portabilité** : Rendre le système autonome et portable via une application mobile qui pourrait effectuer le traitement et la traduction sans nécessiter un ordinateur.
++ **Vocabulaire Élargi** : Étendre la base de données du modèle d'IA pour couvrir un vocabulaire plus large, afin de pouvoir traduire une variété de phrases et d'expressions plus étendue.
+
+Ces améliorations visent à rendre le dispositif non seulement plus complet en termes de communication mais aussi plus pratique et accessible pour un usage quotidien. L'ajout de ces fonctionnalités ouvrirait la voie à une commercialisation réussie et à un impact social encore plus grand.
