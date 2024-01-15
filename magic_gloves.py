@@ -54,14 +54,33 @@ class MagicGlovesUI(QWidget):
 
         # Add the start button
         self.start_button = QPushButton("Start")
+        self.start_button.setCursor(Qt.PointingHandCursor)
+        self.start_button.setToolTip("Start the prediction")
+        self.start_button.setToolTipDuration(2000)
+        self.start_button.setObjectName("QPushButton")
         # Connect the button to the start_prediction function and the show_info function
         self.start_button.clicked.connect(self.start_prediction)
         # set the font size of the start button and change color to a transparent blue
-        self.start_button.setStyleSheet("font-size: 25px; background-color: rgba(45, 95, 200, 127); border-radius: 15px; color: white; font-weight: bold; border: 2px solid black;")
+        # self.start_button.setStyleSheet("font-size: 25px; background-color: rgba(45, 95, 200, 127); border-radius: 15px; color: white; font-weight: bold; border: 2px solid black;")
+        self.start_button.setStyleSheet("""
+        QPushButton {
+            font-size: 25px; 
+            background-color: rgba(45, 95, 200, 127); 
+            border-radius: 15px; 
+            color: white; 
+            font-weight: bold; 
+            border: 2px solid black;
+            padding: 5px;
+        }
+        QPushButton:hover {
+            background-color: white; 
+            color: black;
+        }
+        """)
         # Set limit for the size of the button
         self.start_button.setFixedWidth(300)
         self.start_button.setFixedHeight(70)
-        self.start_button.setEnabled(False)  # Disable the start button initially
+        # self.start_button.setEnabled(False)  # Disable the start button initially
         self.layout.addWidget(self.start_button, alignment=Qt.AlignCenter)
 
         # Add the result label

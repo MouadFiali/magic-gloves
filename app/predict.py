@@ -4,8 +4,6 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import load_model
 import joblib
-import serial
-import threading
 import openai
 from dotenv import load_dotenv
 import os
@@ -62,13 +60,7 @@ class Prediction:
 
     def words_to_sentence(self, words, qThread):
         # time.sleep(2)
-        # list_word = ' - '.join(words)
-        if len(words) == 2:
-            list_word = ' WE - STUDENT'
-        elif len(words) == 4:
-            list_word = ' WE - STUDENT - WE - PROUD'
-        elif len(words) == 6:
-            list_word = ' WE - STUDENT - WE - PROUD - THIS - WORK'
+        list_word = ' - '.join(words)
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
