@@ -50,11 +50,11 @@ Voici le déroulement typique d'utilisation de nos gants de traduction du langag
 
 3. **Pause et Préparation pour le Mouvement Suivant :**
 
-- Après chaque geste, une pause de 2 secondes est observée. Cette période permet à l'utilisateur de se préparer pour le signe suivant et assure que les mouvements soient clairement délimités et correctement interprétés.
+- Après chaque geste, une pause de 2 secondes est observée. Cette période permet à l'utilisateur de se préparer pour le signe suivant et assure que les mouvements soient clairement délimités et correctement interprétés. Ce delai est aussi une solution pour faire face à quelques limitation quant à l'utilisation du module NLP utilisé pour la prochaine phase du déroulement du processus.
 
 4. **Formation de Phrases et Correction Grammaticale :**
 
-- Après chaque prédiction de mot, le système évalue deux critères : si le numéro de prédiction est pair ou si le mot prédit correspond au mot de fin (mot d'arrêt). Si l'un de ces critères est rempli, le système procède à l'envoi de la séquence accumulée des mots prédits vers un module de traitement du langage naturel (NLP). Ce module a pour rôle d'affiner la structure grammaticale, garantissant ainsi la clarté et la précision de la phrase formulée.
+- Après chaque prédiction de mot, le système évalue deux critères : si le numéro de prédiction est pair ou si le mot prédit correspond au mot de fin (mot d'arrêt). Si l'un de ces critères est rempli, le système procède à l'envoi de la séquence accumulée des mots prédits vers un module de traitement du langage naturel (NLP) (l'API de chatGPT en l'occurence). Ce module a pour rôle d'affiner la structure grammaticale, garantissant ainsi la clarté et la précision de la phrase formulée.
 - Suite à la structuration de la phrase par le module NLP, le système vérifie si le dernier mot prédit était le mot d'arrêt. Si c'est le cas, la phrase est considérée comme complète et le processus peut se terminer. Sinon, le système reprend à l'étape d'enregistrement du mouvement suivant, continuant ainsi la séquence jusqu'à l'identification du mot d'arrêt.
 
 ### Schéma logique d’utilisation
@@ -94,7 +94,7 @@ Notre projet a considérablement avancé vers l'objectif de permettre aux person
 Pour la suite, nous envisageons plusieurs axes d'amélioration qui augmenteraient considérablement la portée et l'utilité de nos gants de traduction du langage des signes :
 
 - **Traduction en Audio** : Afin d'améliorer le produit, il serait utile d'intégrer une fonctionnalité de synthèse vocale qui convertirait le texte traduit en parole, rendant la communication encore plus accessible et naturelle.
-- **Traduction Inverse** : Un autre développement majeur serait la traduction de la langue orale en texte écrit. Cela permettrait une conversation bidirectionnelle, où la parole peut être traduite en texte pour les personnes sourdes ou ayant des difficultés à entendre.
+- **Traduction Inverse** : Un autre développement majeur serait la traduction de la langue orale en un language de vibration  pour permettre aux personnes sourdes une experience "auditive" à travers le touché, c'est un concept connu par le nom de "senses subsitution". Cela permettrait une conversation bidirectionnelle, où la parole peut être traduite en texte pour les personnes sourdes ou ayant des difficultés à entendre.
 - **Portabilité** : Rendre le système autonome et portable via une application mobile qui pourrait effectuer le traitement et la traduction sans nécessiter un ordinateur.
 - **Vocabulaire Élargi** : Étendre la base de données du modèle d'IA pour couvrir un vocabulaire plus large, afin de pouvoir traduire une variété de phrases et d'expressions plus étendue.
 
