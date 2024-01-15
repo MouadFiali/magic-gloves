@@ -22,7 +22,7 @@ Notre projet aborde cette problématique en fournissant une solution technologiq
 
 Pour la réalisation de nos gants de traduction du langage des signes, nous avons utilisé les composants suivants :
 
-- **Capteurs de Flexion** : Chaque gant est équipé de 5 capteurs de flexion, permettant de détecter et de mesurer les mouvements des doigts.
+- **Capteurs de Flexion** : Notre conception originale prévoyait l'équipement de chaque gant avec cinq capteurs de flexion pour une captation optimale des mouvements des doigts. Cependant, une contrainte d'approvisionnement a conduit à équiper un gant de cinq capteurs et l'autre de quatre, toutefois, la sensibilité suffisante des capteurs restants assure une détection précise et une mesure efficace des mouvements.
 - **Capteurs Accéléromètre/Gyroscope** : Chaque main est équipé d'un capteur accéléromètre/gyroscope utilisé pour capter les mouvements et l'orientation de la main dans l'espace.
 - **Arduino UNO** : Deux cartes Arduino UNO servent de plateforme de contrôle et de traitement des signaux provenant des capteurs.
 - **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
@@ -59,18 +59,18 @@ Voici le déroulement typique d'utilisation de nos gants de traduction du langag
 
 ### Schéma logique d’utilisation
 
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Schema_logic.png" width="500">
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Schema_logic.png" width="600">
 
 ### Diagramme de séquence
 
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png" width="500">
+<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png" width="700">
 
 ## Budget
 
 Une étude budgétaire des composants par rapport aux prix trouvables sur internet nous indique les prix suivant :
 
 - Gants : 10 €
-- Capteurs de Flexion : 100 € (pour 10 capteurs)
+- Capteurs de Flexion : 90 € (pour 9 capteurs)
 - Modules Accéléromètre/Gyroscope : 40 € (pour 2 modules)
 - Cartes Arduino UNO : 50 € (pour 2 cartes)
 - Matériel de Connexion (câbles, connecteurs, etc.) : 20 €
@@ -83,7 +83,7 @@ Concernant le budget horaire, avec une considération approximative des temps de
 - Développement Software (algorithme de calibrage, de collecte de données et de modèles IA) : 30 h
   Sous-total au SMIC 605.8 €
 
-**Total Estimatif** : 825,8 EUR
+**Total Estimatif** : 815,8 EUR
 
 ## Bilan
 
