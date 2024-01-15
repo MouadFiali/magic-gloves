@@ -1,5 +1,9 @@
 data_verifier.py
 dataset
-*-env/
-rnn_model.h5
-rnn_scaler.joblib
+nlp.py
+*-env
+.env
+__pycache__
+*.h5
+*.joblib
+*.txt

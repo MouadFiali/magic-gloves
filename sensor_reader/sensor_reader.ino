@@ -90,7 +90,7 @@ void setup() {
 }
 
 void loop() {
-    delay(3850); // Wait for 4 second before reading again
+    delay(2000); // Wait for 2 second before reading again
     
     Serial.println("Debut Enregistrement...");
     // In 2 seconds, we should record 10 frames
