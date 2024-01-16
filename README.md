@@ -68,9 +68,9 @@ Voici le déroulement typique d'utilisation de nos gants de traduction du langag
 
 ### Vidéo de démonstration
 
-<iframe src="https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/preview" width="640" height="480" allow="autoplay"></iframe>
+Voici une vidéo de démonstration de notre projet (Cliquer sur l'image pour accéder à la vidéo) :
 
-Si la vidéo ne s'affiche pas, vous pouvez la visionner sur [Google Drive](https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/view?usp=sharing).
+[![Vidéo de démonstration](/images/app.png)](https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/view?usp=sharing)
 
 ## Budget
 
