@@ -1,5 +1,18 @@
 # Magic Gloves
 
+## Table des matières
+- [Description](#description)
+- [Problématique](#problématique)
+- [Matériel Utilisé](#matériel-utilisé)
+- [Collecte de Données](#collecte-de-données)
+- [Scénario d'utilisation](#scénario-dutilisation)
+    - [Schéma logique d'utilisation](#schéma-logique-dutilisation)
+    - [Diagramme de séquence](#diagramme-de-séquence)
+    - [Vidéo de démonstration](#vidéo-de-démonstration)
+- [Budget](#budget)
+- [Bilan](#bilan)
+- [Pistes d'Amélioration](#pistes-d'Amélioration)
+
 ## Description
 
 Notre projet vise à créer un pont de communication pour les personnes sourdes, muettes ou ayant des difficultés à parler. Nous avons développé des gants innovants capables de traduire le langage des signes en texte écrit, rendant la communication avec le grand public fluide et compréhensible.
@@ -40,7 +53,7 @@ Nous avons collecté manuellement les données car nous n'avons pas trouvé de b
 
 Voici le lien Kaggle vers dataset enregistré : [Sign Language Data](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition)
 
-## Scénario d’utilisation
+## Scénario d'utilisation
 
 Voici le déroulement typique d'utilisation de nos gants de traduction du langage des signes :
 
