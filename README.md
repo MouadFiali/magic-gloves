@@ -1,5 +1,9 @@
 # Magic Gloves
 
+## Description
+
+Notre projet vise à créer un pont de communication pour les personnes sourdes, muettes ou ayant des difficultés à parler. Nous avons développé des gants innovants capables de traduire le langage des signes en texte écrit, rendant la communication avec le grand public fluide et compréhensible.
+
 ## Table des matières
 - [Description](#description)
 - [Problématique](#problématique)
@@ -13,11 +17,7 @@
 - [Bilan](#bilan)
 - [Pistes d'Amélioration](#pistes-d'Amélioration)
 
-## Description
-
-Notre projet vise à créer un pont de communication pour les personnes sourdes, muettes ou ayant des difficultés à parler. Nous avons développé des gants innovants capables de traduire le langage des signes en texte écrit, rendant la communication avec le grand public fluide et compréhensible.
-
-### Membres de l'Équipe
+## Membres de l'Équipe
 
 - FIALI Mouad
 - GHAZAOUI Badr
@@ -51,7 +51,7 @@ Pour la réalisation de nos gants de traduction du langage des signes, nous avon
 
 Nous avons collecté manuellement les données car nous n'avons pas trouvé de base de données adaptée à notre projet et au matériel que nous utilisions. Les données comprennent les mouvements en langage des signes de six mots traduits en anglais, capturés à l'aide de capteurs de flexion et d'un gyroscope/accéléromètre. Un signe de pause, ajouté également, marque la fin de la phrase lorsque l'utilisateur ne réalise aucun mouvement. Chaque mouvement est enregistré sous forme de 20 frames (pour chaque capteur). Au total, nous avons enregistré 2400 données (6 mots * 400 enregistrements par mot, donnant 2400 en plus du signe de pause) avec 440 colonnes comprenant les valeurs des capteurs de flexion gauche/droite, de l'orientation gauche/droite, et de l'accélération gauche/droite.
 
-Voici le lien Kaggle vers dataset enregistré : [Sign Language Data](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition)
+Voici le lien Kaggle vers notre dataset enregistré : [Sign Language Data](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition)
 
 ## Scénario d'utilisation
 
