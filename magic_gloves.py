@@ -205,7 +205,7 @@ class PredictionThread(QThread):
             
             # If the data is not a calibration message, predict the class
             if not str(self.ui.prediction.right_serial_data).endswith('calibration AccGyro') and str(self.ui.prediction.right_serial_data) != 'Debut de calibration Flex' and str(self.ui.prediction.right_serial_data) != 'Fin de calibration' and str(self.ui.prediction.right_serial_data) != 'Debut Enregistrement...' :
-                self.ui.show_info("Pause de 3 secondes avant de passer au mot suivant...")
+                self.ui.show_info("Pause de 2 secondes avant de passer au mot suivant...")
                 my_data = self.ui.prediction.format_all_data()
                 print('***********************************************************')
                 predicted_word = self.ui.prediction.predict_class(my_data)
