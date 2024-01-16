@@ -34,6 +34,12 @@ Pour la réalisation de nos gants de traduction du langage des signes, nous avon
     <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="500">
 </div>
 
+## Collecte de Données
+
+Nous avons collecté manuellement les données car nous n'avons pas trouvé de base de données adaptée à notre projet et au matériel que nous utilisions. Les données comprennent les mouvements en langage des signes de six mots traduits en anglais, capturés à l'aide de capteurs de flexion et d'un gyroscope/accéléromètre. Un signe de pause, ajouté également, marque la fin de la phrase lorsque l'utilisateur ne réalise aucun mouvement. Chaque mouvement est enregistré sous forme de 20 frames (pour chaque capteur). Au total, nous avons enregistré 2400 données (6 mots * 400 enregistrements par mot, donnant 2400 en plus du signe de pause) avec 440 colonnes comprenant les valeurs des capteurs de flexion gauche/droite, de l'orientation gauche/droite, et de l'accélération gauche/droite.
+
+Voici le lien Kaggle vers dataset enregistré : [Sign Language Data](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition)
+
 ## Scénario d’utilisation
 
 Voici le déroulement typique d'utilisation de nos gants de traduction du langage des signes :
