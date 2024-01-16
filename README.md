@@ -23,11 +23,12 @@ Notre projet aborde cette problématique en fournissant une solution technologiq
 Pour la réalisation de nos gants de traduction du langage des signes, nous avons utilisé les composants suivants :
 
 - **Capteurs de Flexion** : Notre conception originale prévoyait l'équipement de chaque gant avec cinq capteurs de flexion pour une captation optimale des mouvements des doigts. Cependant, une contrainte d'approvisionnement a conduit à équiper un gant de cinq capteurs et l'autre de quatre, toutefois, la sensibilité suffisante des capteurs restants assure une détection précise et une mesure efficace des mouvements.
+- **Résistances** : Les capteurs de flexion sont connectés à des résistances de 10 kΩ.
 - **Capteurs Accéléromètre/Gyroscope** : Chaque main est équipé d'un capteur accéléromètre/gyroscope utilisé pour capter les mouvements et l'orientation de la main dans l'espace.
 - **Arduino UNO** : Deux cartes Arduino UNO servent de plateforme de contrôle et de traitement des signaux provenant des capteurs.
 - **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
 
-<div style="display:flex;">
+<div style="display:flex; justify-content:center;">
     <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="500">
     <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="500">
     <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="500">
@@ -65,6 +66,12 @@ Voici le déroulement typique d'utilisation de nos gants de traduction du langag
 
 <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png" width="700">
 
+### Vidéo de démonstration
+
+<iframe src="https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/preview" width="640" height="480" allow="autoplay"></iframe>
+
+Si la vidéo ne s'affiche pas, vous pouvez la visionner sur [Google Drive](https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/view?usp=sharing).
+
 ## Budget
 
 Une étude budgétaire des composants par rapport aux prix trouvables sur internet nous indique les prix suivant :
@@ -75,15 +82,18 @@ Une étude budgétaire des composants par rapport aux prix trouvables sur intern
 - Cartes Arduino UNO : 50 € (pour 2 cartes)
 - Matériel de Connexion (câbles, connecteurs, etc.) : 20 €
 
+  **Sous-total** : 210 €
+
 Concernant le budget horaire, avec une considération approximative des temps de travail cumulés et d’un taux horaire du SMIC, on arrive au détail des heures suivantes :
 
 - Brainstorming : 4 h
 - Formation : 8 h
 - Assemblage des gants : 10 h
 - Développement Software (algorithme de calibrage, de collecte de données et de modèles IA) : 30 h
-  Sous-total au SMIC 605.8 €
+  
+  **Sous-total** au SMIC 605.8 €
 
-**Total Estimatif** : 815,8 EUR
+**Total Estimatif** : 815.8 €
 
 ## Bilan
 
