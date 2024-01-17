@@ -1,130 +1,80 @@
 # Magic Gloves
-
 ## Description
+"Magic Gloves" is an innovative project aimed at translating sign language into spoken language using smart gloves equipped with sensors. This technology captures the intricate movements and positions of sign language and translates them into words, bridging communication gaps for the deaf and hard-of-hearing community. Our GitHub repository documents the development journey, including data collection, machine learning models, and hardware-software integration, showcasing our commitment to enhancing accessibility through AI and IoT.
+You can find more details (In french) about the project in the [wiki](https://github.com/MouadFiali/magic-gloves/wiki) section of this repository.
 
-Notre projet vise à créer un pont de communication pour les personnes sourdes, muettes ou ayant des difficultés à parler. Nous avons développé des gants innovants capables de traduire le langage des signes en texte écrit, rendant la communication avec le grand public fluide et compréhensible.
+## Table of Contents
+- [Requirements](#requirements)
+- [Usage](#data-collection)
+- [Machine Learning Models](#machine-learning-models)
+- [Arduino Code](#arduino-code)
+- [Data Collection](#data-collection)
+- [Notes](#notes)
 
-## Table des matières
-- [Description](#description)
-- [Problématique](#problématique)
-- [Matériel Utilisé](#matériel-utilisé)
-- [Collecte de Données](#collecte-de-données)
-- [Scénario d'utilisation](#scénario-dutilisation)
-    - [Schéma logique d'utilisation](#schéma-logique-dutilisation)
-    - [Diagramme de séquence](#diagramme-de-séquence)
-    - [Vidéo de démonstration](#vidéo-de-démonstration)
-- [Budget](#budget)
-- [Bilan](#bilan)
-- [Pistes d'Amélioration](#pistes-damélioration)
+## Requirements
+In order to run the project application [`magic_gloves.py`](magic_gloves.py), you will need some hardware and software requirements. 
 
-## Membres de l'Équipe
+- The hardware requirements are as follows:
+  - 2x Arduino Uno (One for each hand)
+  - 10x Flex sensors (5 for each hand)
+  - 2x Grove 6-axis Accelerometer & Gyroscope (One for each hand)
+  - A pair of gloves to attach the sensors to
 
-- FIALI Mouad
-- GHAZAOUI Badr
-- MAROUANE Kamal
-- RIMAOUI Nabila
-- ZARKTOUNI Ismail
+<center><img src="images/Gants_2.jpeg" width="300"></center>
 
-## Problématique
+- The software requirements are as follows:
+  - All the python libraries listed in the [`app/requirements.txt`](app/requirements.txt) file. You can install them using the following command in your environment:
+  ```bash
+  pip install -r requirements.txt
+  ```
+However, if you are only interested in testing the model(s), notebooks and the dataset, you can only install the [`models/requirements.txt`](models/requirements.txt) file using the same command as above.
 
-Le langage des signes est un outil de communication essentiel pour les personnes sourdes, muettes ou ayant des difficultés de parole. Cependant, il constitue un défi majeur : sa maîtrise reste peu répandue dans la population générale, ce qui crée un obstacle significatif à l'intégration sociale et professionnelle des personnes dépendant de cette forme de communication.
 
-Notre projet aborde cette problématique en fournissant une solution technologique qui permet de traduire le langage des signes en langage écrit. Cette innovation vise à briser les barrières de communication, facilitant ainsi l'interaction et l'intégration des personnes sourdes ou muettes dans la société. En transformant les gestes en texte, nous créons un pont entre deux mondes, permettant une compréhension mutuelle et une interaction enrichissante pour tous.
+## Usage
 
-## Matériel Utilisé
+In order to use the project, you will need to first run the [`rnn.py`](models/rnn.py) script to train the model and save it using the following command:
+```bash
+python models/rnn.py
+```
+Make sure the you specify the correct path to the dataset in the script before running it in the following line:
+```python
+# Load the dataset
+df = pd.read_csv('importfichier.csv', header=None)
+```
 
-Pour la réalisation de nos gants de traduction du langage des signes, nous avons utilisé les composants suivants :
+After training the model, make sure to put the resulting model files in the root directory of the project. Then, you can run the [`magic_gloves.py`](magic_gloves.py) script to start the application using the following command:
+```bash
+python magic_gloves.py
+```
+Which will open a window that looks like this, and all you have to do is follow the instructions:
+![Magic Gloves Application](images/app.png)
 
-- **Capteurs de Flexion** : Notre conception originale prévoyait l'équipement de chaque gant avec cinq capteurs de flexion pour une captation optimale des mouvements des doigts. Cependant, une contrainte d'approvisionnement a conduit à équiper un gant de cinq capteurs et l'autre de quatre, toutefois, la sensibilité suffisante des capteurs restants assure une détection précise et une mesure efficace des mouvements.
-- **Résistances** : Les capteurs de flexion sont connectés à des résistances de 10 kΩ.
-- **Capteurs Accéléromètre/Gyroscope** : Chaque main est équipé d'un capteur accéléromètre/gyroscope utilisé pour capter les mouvements et l'orientation de la main dans l'espace.
-- **Arduino UNO** : Deux cartes Arduino UNO servent de plateforme de contrôle et de traitement des signaux provenant des capteurs.
-- **Matériel de Connexion** : Câbles, connecteurs, et tout le nécessaire pour connecter les capteurs aux cartes Arduino.
+## Machine Learning Models
 
-<div style="display:flex; justify-content:center;">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_2.jpeg" width="500">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_3.jpeg" width="500">
-    <img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Gants_1.jpeg" width="500">
-</div>
+The main machine learning model used in this project is a recurrent neural network (RNN) which is trained on the dataset collected using the arduino boards. The model is trained using the [`rnn.py`](models/rnn.py) script and the resulting model files are saved in the root directory of the project.
 
-## Collecte de Données
+However, 2 other models were tested and trained on the dataset, namely a Long Short-Term Memory (LSTM) model and a Gate Recurrent Unit (GRU) model. The scripts used to train these models are [`lstm.py`](models/lstm.py) and [`gru.py`](models/gru.py) respectively. The resulting model files are also saved in the root directory of the project.
 
-Nous avons collecté manuellement les données car nous n'avons pas trouvé de base de données adaptée à notre projet et au matériel que nous utilisions. Les données comprennent les mouvements en langage des signes de six mots traduits en anglais, capturés à l'aide de capteurs de flexion et d'un gyroscope/accéléromètre. Un signe de pause, ajouté également, marque la fin de la phrase lorsque l'utilisateur ne réalise aucun mouvement. Chaque mouvement est enregistré sous forme de 20 frames (pour chaque capteur). Au total, nous avons enregistré 2400 données (6 mots * 400 enregistrements par mot, donnant 2400 en plus du signe de pause) avec 440 colonnes comprenant les valeurs des capteurs de flexion gauche/droite, de l'orientation gauche/droite, et de l'accélération gauche/droite.
+The file [`test_predictions.py`](test/test_predictions.py) is used to test the models on real-time data collected from the arduino boards. The script reads the data from the arduino boards and uses the models to predict the sign.
 
-Voici le lien Kaggle vers notre dataset enregistré : [Sign Language Data](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition)
+## Arduino Code
 
-## Scénario d'utilisation
+The arduino code [`sensor_reader.ino`](sensor_reader/sensor_reader.ino) is used to read the data from the sensors and send it to the python scripts using the serial communication protocol. The code is uploaded to the arduino boards using the Arduino IDE.
 
-Voici le déroulement typique d'utilisation de nos gants de traduction du langage des signes :
+## Data Collection
 
-1. **Mise en Place et Calibration :**
+The data collection process is done using the [`data_collector.py`](data_collection/data_collector.py) script. The script reads the data from the arduino boards and saves it in a csv file. The script is run using the following command:
+```bash
+python data_collection/data_collector.py
+```
 
-- L'utilisateur démarre une phase de calibration de 10 secondes pour les capteurs gyroscopiques/accéléromètres, permettant de les ajuster à ses mouvements spécifiques.
-- Suit une seconde phase de calibration, également de 10 secondes, pour les capteurs de flexion, afin de calibrer les courbures des doigts.
+## Notes
+- The dataset posted on Kaggle is a small dataset used as a proof of concept. However in real case scenarios, the dataset should be much larger and should contain more signs and more data points for each sign.
 
-2. **Enregistrement et Traduction des Mouvements :**
-
-- L'utilisateur effectue des gestes en langage des signes.
-- Les gants captent les mouvements et les transmettent en temps réel aux cartes Arduino UNO.
-- Les données sont envoyées à l'ordinateur où le modèle d'IA analyse et traduit les gestes en texte écrit.
-
-3. **Pause et Préparation pour le Mouvement Suivant :**
-
-- Après chaque geste, une pause de 2 secondes est observée. Cette période permet à l'utilisateur de se préparer pour le signe suivant et assure que les mouvements soient clairement délimités et correctement interprétés. Ce delai est aussi une solution pour faire face à quelques limitation quant à l'utilisation du module NLP utilisé pour la prochaine phase du déroulement du processus.
-
-4. **Formation de Phrases et Correction Grammaticale :**
-
-- Après chaque prédiction de mot, le système évalue deux critères : si le numéro de prédiction est pair ou si le mot prédit correspond au mot de fin (mot d'arrêt). Si l'un de ces critères est rempli, le système procède à l'envoi de la séquence accumulée des mots prédits vers un module de traitement du langage naturel (NLP) (l'API de chatGPT en l'occurence). Ce module a pour rôle d'affiner la structure grammaticale, garantissant ainsi la clarté et la précision de la phrase formulée.
-- Suite à la structuration de la phrase par le module NLP, le système vérifie si le dernier mot prédit était le mot d'arrêt. Si c'est le cas, la phrase est considérée comme complète et le processus peut se terminer. Sinon, le système reprend à l'étape d'enregistrement du mouvement suivant, continuant ainsi la séquence jusqu'à l'identification du mot d'arrêt.
-
-### Schéma logique d’utilisation
-
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Schema_logic.png" width="600">
-
-### Diagramme de séquence
-
-<img src="https://github.com/MouadFiali/magic-gloves/raw/wiki/images/Diagramme_sequence.png" width="700">
-
-### Vidéo de démonstration
-
-Voici une vidéo de démonstration de notre projet (Cliquer sur l'image pour accéder à la vidéo) :
-
-[![Vidéo de démonstration](/images/app.png)](https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/view?usp=sharing)
-
-## Budget
-
-Une étude budgétaire des composants par rapport aux prix trouvables sur internet nous indique les prix suivant :
-
-- Gants : 10 €
-- Capteurs de Flexion : 90 € (pour 9 capteurs)
-- Modules Accéléromètre/Gyroscope : 40 € (pour 2 modules)
-- Cartes Arduino UNO : 50 € (pour 2 cartes)
-- Matériel de Connexion (câbles, connecteurs, etc.) : 20 €
-
-  **Sous-total** : 210 €
-
-Concernant le budget horaire, avec une considération approximative des temps de travail cumulés et d’un taux horaire du SMIC, on arrive au détail des heures suivantes :
-
-- Brainstorming : 4 h
-- Formation : 8 h
-- Assemblage des gants : 10 h
-- Développement Software (algorithme de calibrage, de collecte de données et de modèles IA) : 30 h
-  
-  **Sous-total** au SMIC 605.8 €
-
-**Total Estimatif** : 815.8 €
-
-## Bilan
-
-Notre projet a considérablement avancé vers l'objectif de permettre aux personnes sourdes ou muettes de communiquer via le langage des signes traduit en texte. La précision de traduction de 99% témoigne de l'efficacité des gants et du modèle d'IA que nous avons développés. Les résultats encourageants soulignent le potentiel d'amélioration et de commercialisation futur.
-
-## Pistes d'Amélioration
-
-Pour la suite, nous envisageons plusieurs axes d'amélioration qui augmenteraient considérablement la portée et l'utilité de nos gants de traduction du langage des signes :
-
-- **Traduction en Audio** : Afin d'améliorer le produit, il serait utile d'intégrer une fonctionnalité de synthèse vocale qui convertirait le texte traduit en parole, rendant la communication encore plus accessible et naturelle.
-- **Traduction Inverse** : Un autre développement majeur serait la traduction de la langue orale en un language de vibration  pour permettre aux personnes sourdes une experience "auditive" à travers le touché, c'est un concept connu par le nom de "senses subsitution". Cela permettrait une conversation bidirectionnelle, où la parole peut être traduite en texte pour les personnes sourdes ou ayant des difficultés à entendre.
-- **Portabilité** : Rendre le système autonome et portable via une application mobile qui pourrait effectuer le traitement et la traduction sans nécessiter un ordinateur.
-- **Vocabulaire Élargi** : Étendre la base de données du modèle d'IA pour couvrir un vocabulaire plus large, afin de pouvoir traduire une variété de phrases et d'expressions plus étendue.
-
-Ces améliorations visent à rendre le dispositif non seulement plus complet en termes de communication mais aussi plus pratique et accessible pour un usage quotidien. L'ajout de ces fonctionnalités ouvrirait la voie à une commercialisation réussie et à un impact social encore plus grand.
+- In order to run the python scripts ([`data_collector.py`](data_collection/data_collector.py), [`test_predictions.py`](test/test_predictions.py)), you will need to change the ports names (numbers) in the scripts to match the port which the arduino is connected to. This can be done by changing the following lines in the scripts:
+```python
+# LEFT 
+ser = serial.Serial('COM7', 9600)
+# RIGHT
+ser2 = serial.Serial('COM4', 9600)
+```

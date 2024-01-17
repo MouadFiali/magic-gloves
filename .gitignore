@@ -6,4 +6,3 @@ nlp.py
 __pycache__
 *.h5
 *.joblib
-*.txt
