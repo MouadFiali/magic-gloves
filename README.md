@@ -27,7 +27,13 @@ In order to run the project application [`magic_gloves.py`](magic_gloves.py), yo
   ```bash
   pip install -r requirements.txt
   ```
-However, if you are only interested in testing the model(s), notebooks and the dataset, you can only install the [`models/requirements.txt`](models/requirements.txt) file using the same command as above.
+  - In addition, the magic_gloves application uses the OpenAI API for NLP purposes. You will need an API key to use the application. It should be present in `.env` file in the root directory of the project. The `.env` file should look like this:
+  ```
+  OPENAI_API_KEY=YOUR_API_KEY
+  ```
+However, if you are only interested in testing the model(s), notebooks and the dataset, you can only install the [`models/requirements.txt`](models/requirements.txt) file using the same command as above. 
+
+The dataset used in this project is available on [Kaggle](https://www.kaggle.com/datasets/mouadfiali/sensor-based-american-sign-language-recognition). You can download it and use it to train the models.
 
 
 ## Usage
