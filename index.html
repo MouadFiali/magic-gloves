@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Votre Projet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body { margin-top: 220px; }
+        .title {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            margin: 0;
+            height: 150px; 
+            width: 100%;
+            background-color: #4E7FA8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title img {
+            margin-top: 0px;
+            width: 200px;
+            
+            height: 200px;
+            object-fit: cover;
+        }
+        #probleme, #donnees, #EvaluationEnv, #bib, #Methodes{
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        .menu {
+            /* position: fixed; */
+            position: fixed;
+            top: 150px;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            background-color: #333;
+            width: 100%;
+        }
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Flexbox to align items in a row */
+            justify-content: center; /* Center items horizontally */
+        }
+        .menu ul li {
+            display: inline-block; /* Display items in a line */
+        }
+        .menu ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu ul li a:hover:not(.active) {
+            background-color: #111;
+        }
+        /* .active {
+            background-color: #04AA6D;
+        } */
+        #creators{
+            margin-top:40px;
+            margin-left: 180px; /* Adjust the left margin as needed */
+            margin-right: 180px; /* Adjust the right margin as needed */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        function showContent(contentId) {
+            var contentRapport =` <section id=\"probleme\"><h1>1. Présentation du Problème Traité</h1> <h3>1.1. Contexte du Problème :</h3> 
+                Le langage des signes est essentiel pour les personnes confrontées à des déficiences auditives, telles que la surdité, ainsi que pour celles atteintes de mutisme. Cependant, cette forme de communication n'est pas largement maîtrisée par la majorité de la population, ce qui crée une barrière significative dans les interactions. Cette situation ne limite pas seulement les échanges sociaux de base, mais restreint aussi l'accès à des services clés pour ces communautés.
+                L'insuffisance de moyens de communication adaptés est exacerbée par le manque d'outils et de technologies conçus pour faciliter l'interaction entre les personnes utilisant le langage des signes et celles qui ne le comprennent pas. Cette carence renforce l'isolement et limite la participation active de ces individus dans la société.
+                <h3>1.2. Impact Personnel et Sociétal :</h3> 
+                L'absence d'outils adaptés pour la communication entre les personnes sourdes, malentendantes ou muettes et le reste de la population conduit à des malentendus et crée des barrières dans divers contextes, tels que les interactions médicales, professionnelles et éducatives.
+                
+                Cette situation a un impact profond sur la qualité de vie de ces personnes, engendrant un sentiment d'isolement et limitant leur participation active dans la société. Elle souligne l'urgence de développer des solutions innovantes et inclusives qui permettent de surmonter ces obstacles communicatifs, ouvrant ainsi la voie à une société plus intégrée et accessible à tous, indépendamment des défis auditifs ou de parole.
+
+                <h3>1.3. Objectif du Projet \'Magic Gloves\' :</h3>
+                Le projet \'Magic Gloves\' vise à développer une solution technologique pour surmonter cette barrière. En utilisant des gants innovants équipés de capteurs, le projet propose de traduire les mouvements du langage des signes en parole écrite intelligible, rendant la communication plus accessible et inclusive. Cette innovation a le potentiel de transformer radicalement la manière dont les personnes sourdes ou malentendantes interagissent avec le monde qui les entoure. </section>
+                
+
+            
+                </section>
+                <section id="donnees">
+                    <h2>2. Les Données Utilisées</h2>
+                    
+                    <h3>2.1. Optimisation d'un Dataset pour la Reconnaissance de Mouvements des Mains</h3>
+                    Lors de l'élaboration de notre ensemble de données initial, nous avons été confrontés à divers défis, notamment en ce qui concerne la structuration et l'organisation des données. Pour surmonter ces obstacles, des ajustements significatifs ont été nécessaires afin d'améliorer la lisibilité et la compréhensibilité des données enregistrées, ainsi que l'efficacité du traitement par nos modèles d'intelligence artificielle.
+
+                    Les modifications entreprises comprenaient la restructuration des noms de colonnes et de leur organisation, avec quelques corrections sémantiques. L'objectif de ces ajustements était d'accroître l'intuitivité du jeu de données pour les algorithmes d'apprentissage automatique, alignant ainsi les données de manière plus cohérente avec les exigences des modèles prédictifs. La nouvelle structuration se décline en plusieurs formes :
+                    </br>
+                        <div class="dataFlex">
+                            <ul>
+                                <li><b><span style="background-color: #F2F2F2;">Flex-Left-n-Frame-p : </span></b> Avec n variant de 1 à 20, représentant différents moments (frames) de l'enregistrement, et p variant de 1 à 5 représentant les doigts de la main gauche. Ces colonnes mesurent le degré de flexion de chaque doigt de la main gauche sur 20 frames.
+                                </li></br>
+                                <li><b><span style="background-color: #F2F2F2;">Acceleration-X/Y/Z-Left-Frame-n  : </span></b> Avec n variant de 1 à 20 frames de manière similaire. Ces colonnes indiquent l'accélération de chaque main pendant les 20 frames, selon les axes X, Y et Z, fournissant également une idée de la position de la main.
+                                </li></br>
+                                <li><b><span style="background-color: #F2F2F2;">Orientation-X/Y/Z-Left-Frame-n : </span></b> Ces colonnes, également avec n variant de 1 à 20 frames, indiquent l'orientation de la main gauche dans chaque frame, dans les trois directions X, Y et Z.
+                                </li></br>
+                                <li><b><span style="background-color: #F2F2F2;">Position-X/Y/Z-Right-Frame-p | Orientation-X/Y/Z-Right-Frame-p et Flex-Right-n-Frame-p : </span></b> Ces colonnes sont analogues aux paramètres de la main gauche, mais pour la main droite.
+                                </li>
+                            </ul>
+                        </div>
+                    En prenant en considération les différentes catégories de données pour chaque main, notamment la flexion, la position et l'orientation pour les deux mains sur 20 frames, le nombre total de colonnes de données atteint 440. Chaque colonne représente une caractéristique spécifique des mouvements des mains. En complément de ces 440 colonnes, une dernière colonne nommée "SIGN" a été intégrée. Cette dernière servira de colonne cible (target) pour notre modèle d'apprentissage automatique, indiquant le signe correspondant à chaque ensemble de mouvements enregistrés.
+                    
+                    <h3>2.2. Processus d'Enregistrement des Données</h3>
+                    Dans la configuration actuelle de notre ensemble de données (voir Annexe [2]), notre équipe a réussi à enregistrer près de 2100 instances, couvrant six signes différents avec environ 300 enregistrements pour chaque signe et un signe de pause. Pour faciliter la compréhension et l'analyse des données, nous avons introduit un signe de pause qui s'ajoute aux six signes principaux lorsque l'utilisateur ne fait rien. Cette collecte a été effectuée grâce à un processus rigoureux, impliquant la participation de divers intervenants au sein de notre équipe pour garantir une représentation diversifiée des signes.
+                    </br></br>
+                    Ce processus a nécessité l'utilisation d'un script Arduino pour capturer en temps réel les données des capteurs, chaque enregistrement étant converti en une série de valeurs séparées par des virgules. Ces données sont ensuite traitées par un script Python qui les restructure pour les aligner sur les colonnes de notre ensemble de données, avant d'être sauvegardées au format CSV. Chaque ligne de ce fichier CSV représente une série de 20 frames de données de capteurs, avec une pause également enregistrée lorsqu'aucun signe n'est fait.
+                    </br></br>
+                    Bien que notre dataset actuelle soit petite, elle nous permet de faire la preuve de concept nécessaire pour montrer le fonctionnement. Cependant, pour mettre ce projet en utilisation réelle, il faudra une dataset plus large et variée, ce qui implique un investissement de temps significatif, étant donné que nous sommes responsables de l'enregistrement des données.
+                    </br></br>
+                </section>
+
+                <section id="Methodes">
+                    <h1>3. Les Méthodes Utilisées et Leur Justification</h1>
+
+                        <h3>3.1. RNN et LSTM : Choix des Modèles</h3>
+                            <p>
+                                Dans le cadre du projet "Magic Gloves", deux architectures principales d'intelligence artificielle ont été choisies : les Réseaux de Neurones Récurrents (RNN) et les Long Short-Term Memory (LSTM). 
+                            </p>
+                        <h4>3.1.1. RNN :</h4>
+                        <ul>
+                            <li><strong>Principe :</strong> Les RNN sont conçus pour traiter des séquences de données, en conservant un 'état' ou une mémoire des entrées antérieures dans la séquence. Cette caractéristique les rend idéaux pour des applications telles que le langage des signes où l'ordre et le contexte des gestes sont cruciaux.</li>
+                            <li><strong>Adaptation au Projet :</strong> Dans notre projet, les RNN permettent d'interpréter une série de mouvements des mains en une séquence cohérente, capturant ainsi la dynamique temporelle du langage des signes.</li>
+                        </ul>
+
+                        <h4>3.1.2. LSTM :</h4>
+                        <ul>
+                            <li><strong>Architecture :</strong> Les LSTM sont une évolution des RNN traditionnels. Ils sont équipés de 'portes' qui régulent le flux d'informations, leur permettant de conserver ou d'oublier des informations de manière sélective.</li>
+                            <li><strong>Adaptation au Projet :</strong> Leur capacité à gérer des dépendances à long terme est essentielle pour notre projet. Elle permet une interprétation précise des séquences de gestes, même complexes, en conservant le contexte sur toute la longueur de la séquence.</li>
+                        </ul>
+
+                        <h3>3.2 Résultat de RNN et LSTM</h3>
+
+                        <h4>3.2.1. RNN :</h4>
+                        <ul>
+                            <li><strong>Performance :</strong> Les RNN ont montré une capacité remarquable à interpréter correctement des séquences de gestes courtes et simples. Cependant, ils rencontrent des difficultés avec des séquences plus longues et complexes en raison du problème de disparition du gradient.</li>
+                            <li><strong>Évaluation :</strong> Ils ont enregistré une précision impressionnante de 99.78% sur l'ensemble de test, avec des scores parfaits de précision et de rappel.</li>
+                        </ul>
+
+                        <h4>3.2.2. LSTM :</h4>
+                        <ul>
+                            <li><strong>Performance :</strong> Les LSTM ont surpassé les RNN traditionnels dans la gestion des séquences longues et complexes grâce à leur capacité à maintenir des informations pertinentes sur de plus longues périodes.</li>
+                            <li><strong>Évaluation :</strong> Ils ont atteint une précision de 96.72% avec des scores élevés de précision, de rappel et de score F1, démontrant leur compétence à classifier les gestes du langage des signes avec précision.</li>
+                        </ul>
+
+                        <h3></h3>
+                        <p>
+                            Une étape cruciale du projet a été l'intégration réussie du matériel (des gants équipés de capteurs) avec notre système d'intelligence artificielle. Cette intégration a permis de capturer avec précision les mouvements de la main.
+                        </p>
+                </section>
+    
+                <section id="EvaluationEnv">
+                    <h2>4. Évaluation fine des aspects environnementaux et sociétaux</h2>
+                    <h4>4.1. Impacts Environnementaux :</h4>
+                    <div>
+                    <ul>
+                        <li><b>Fabrication des Dispositifs :</b> Les gants eux-mêmes, sont fabriqués à partir de polymères et de textiles synthétiques, peuvent générer des déchets non biodégradables. De plus, l'utilisation de composants électroniques tels que les capteurs, les Arduino, les câbles, etc., peut contribuer à l'augmentation des déchets électroniques.</li></br>
+                        <li><b>Consommation d'Énergie :</b> Les dispositifs électroniques consomment de l'énergie, ce qui a des implications sur la demande énergétique globale. Il est crucial donc d'adopter des solutions économes en énergie pour minimiser l'impact environnemental.</li></br>
+                        <li><b>Fin de Vie et Recyclage :</b> La conception des gants doit tenir compte de leur durabilité et de leur recyclabilité. Cependant, ce critère n'a pas été pris en compte dans notre conceptions. L'adoption de designs modulaires et l'utilisation de matériaux recyclables peuvent faciliter le recyclage et réduire l'impact environnemental.</li>
+                    </ul>    
+                    </div>
+                    <h4>4.2. Impacts Sociétaux :</h4>
+                    <div>
+                    <ul>
+                        <li><b>Inclusion Sociale :</b> En brisant les barrières de communication, les 'Magic Gloves' ont le potentiel d'accroître significativement l'inclusion sociale des personnes sourdes ou muettes. Cela peut ouvrir de nouvelles opportunités dans divers domaines de la vie et réduire le sentiment d'isolement.</li></br>
+                        <li><b>Opportunités Éducatives et Professionnelles :</b> L'amélioration de la communication peut ouvrir des portes vers de meilleures opportunités éducatives et professionnelles, contribuant ainsi à une société plus équitable.</li></br>
+                        <li><b>Sensibilisation et Éducation :</b> Le projet peut également sensibiliser le public à la diversité des besoins en communication et encourager une meilleure compréhension et acceptation des différences.</li>
+                    <ul>
+                    </div>
+                </section>
+
+                <section id="bib">
+                    <h2>Bibliographie</h2>
+                </section>
+
+                `
+                
+                
+                
+                ;
+
+
+                
+            var contentNotebooks = `<a href="https://github.com/MouadFiali/magic-gloves/tree/main/notebooks" target="_blank">Visit Magic Gloves Notebooks on GitHub</a>
+        </br></br><ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-modelTesting1-tab" data-toggle="pill" href="#pills-modelTesting1" role="tab" aria-controls="pills-modelTesting1" aria-selected="true">Model Testing 1</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-modelTesting2-tab" data-toggle="pill" href="#pills-modelTesting2" role="tab" aria-controls="pills-modelTesting2" aria-selected="false">Model Testing 2</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-modelTesting3-tab" data-toggle="pill" href="#pills-modelTesting3" role="tab" aria-controls="pills-modelTesting3" aria-selected="false">Model Testing 3</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-modelTesting4-tab" data-toggle="pill" href="#pills-modelTesting4" role="tab" aria-controls="pills-modelTesting4" aria-selected="false">Model Testing 4</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-modelTesting1" role="tabpanel" aria-labelledby="pills-modelTesting1-tab"><iframe src="https://kamdrain.github.io/modeltesting1/" width="100%" height="600px"></iframe></div>
+  <div class="tab-pane fade" id="pills-modelTesting2" role="tabpanel" aria-labelledby="pills-modelTesting2-tab"><iframe src="https://kamdrain.github.io/modeltesting2/" width="100%" height="600px"></iframe></div>
+  <div class="tab-pane fade" id="pills-modelTesting3" role="tabpanel" aria-labelledby="pills-modelTesting3-tab"><iframe src="https://kamdrain.github.io/modeltesting3/" width="100%" height="600px"></iframe></div>
+  <div class="tab-pane fade" id="pills-modelTesting4" role="tabpanel" aria-labelledby="pills-modelTesting4-tab"><iframe src="https://kamdrain.github.io/modeltesting4/" width="100%" height="600px"></iframe></div>
+</div>`;
+
+
+
+
+
+
+
+            var contentGithub = `<h2>Github</h2><a href="https://github.com/MouadFiali/magic-gloves/tree/main" target="_blank">Visit Magic Gloves Source Code on GitHub</a>
+`;
+            var contentCreators = `
+            <section id="creators">
+                <p>Ce travail a été réalisé dans le cadre d'un projet académique combinant l'intelligence artificielle (IA) et l'Internet des Objets (IoT), illustrant une collaboration interdisciplinaire entre ces deux domaines.</p>
+                <div>
+                    <p>Réalisé par :</p>
+                    <ul>
+                        <li>FIALI Mouad, <a href="mailto:mouad.fiali@grenoble-inp.org">mouad.fiali@grenoble-inp.org</a></li>
+                        <li>GHAZAOUI Badr, <a href="mailto:badr.ghazaoui@grenoble-inp.org">badr.ghazaoui@grenoble-inp.org</a></li>
+                        <li>MAROUANE Kamal, <a href="mailto:kamal.marouane@grenoble-inp.org">kamal.marouane@grenoble-inp.org</a></li>
+                        <li>RIMAOUI Nabila, <a href="mailto:nabila.rimaoui@grenoble-inp.org">nabila.rimaoui@grenoble-inp.org</a></li></li>
+                        <li>ZARKTOUNI Ismail, <a href="mailto:ismail.zarktouni@grenoble-inp.org">ismail.zarktouni@grenoble-inp.org</a></li></li></li>
+                    </ul>
+                </div>
+
+            </section>
+            `;
+            var contentDemo =`<h2>Demo</h2><center><iframe src="https://drive.google.com/file/d/1rZYFMr-MuG-sYjRMZ9x--nTnDmlXHhr3/preview" width="800" height="480" allow="autoplay"></center>`;
+
+            var content = {
+                "Rapport": contentRapport,
+                "Notebooks": contentNotebooks,
+                "Github": contentGithub,
+                "Creators": contentCreators,
+                "Demo": contentDemo
+            };
+
+            document.getElementById("content").innerHTML = content[contentId];
+        }
+    </script>
+    <link rel="shortcut icon" href="https://i.ibb.co/xJm1fcg/last-image.png">
+</head>
+<body>
+    <div class="title">
+        <img src="https://raw.githubusercontent.com/KamDrain/modeltesting1/main/last%20image%20in%20PNG.png" alt="Description of the image">
+        <h1>Magic Gloves</h1>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="javascript:showContent('Rapport')">Rapport</a></li>
+            <li><a href="javascript:showContent('Notebooks')">Notebooks</a></li>
+            <li><a href="javascript:showContent('Github')">Github</a></li>
+            <li><a href="javascript:showContent('Creators')">Creators</a></li>
+            <li><a href="javascript:showContent('Demo')">Demo</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <h2>Welcome</h2>
+        <p>Projet d'Intelligence Artificielle et d'Internet des Objets (IOT) visant à traduire la langue des signes vers une langue universelle (la langue anglaise).</p>
+        <p>Select a menu item to display its content...</p>
+    </div>
+
+</body>
+</html>
