@@ -23,7 +23,7 @@ Notre projet vise à créer un pont de communication pour les personnes sourdes,
 - GHAZAOUI Badr
 - MAROUANE Kamal
 - RIMAOUI Nabila
-- ZERKTOUNI Ismail
+- ZARKTOUNI Ismail
 
 ## Problématique
 
