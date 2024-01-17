@@ -42,7 +42,7 @@ In order to use the project, you will need to first run the [`rnn.py`](models/rn
 ```bash
 python models/rnn.py
 ```
-Make sure the you specify the correct path to the dataset in the script before running it in the following line:
+Make sure to specify the correct path to the dataset in the script before running it in the following line:
 ```python
 # Load the dataset
 df = pd.read_csv('importfichier.csv', header=None)
