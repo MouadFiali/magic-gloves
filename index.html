@@ -251,9 +251,16 @@
                             <li><strong>Évaluation :</strong> Ils ont atteint une précision de 96.72% avec des scores élevés de précision, de rappel et de score F1, démontrant leur compétence à classifier les gestes du langage des signes avec précision.</li>
                         </ul>
 
-                        <h3></h3>
+                        <h3>3.3 Limites du modèle RNN</h3>
+                        <p>Suite à la précision assez "parfaite" du modèle RNN, souvent problématique, nous avons décidé de tester le modèle sous différents scénarios pour tester ses limites. Parmis ces scénarios :</p>
+                        <ul>
+                            <li><strong>Scénario 1 :</strong> Nous avons introduit des malfonctionnements de capteurs (en remplaçant leurs valeurs par des zeros par exemple) dans les données de test. Nous avons alors testé le modèle sur différentes combinaisons de capteurs malfonctionnants. Les resultats nous ont permis de déterminer quels capteurs sont les plus importants pour capturer les nuances des gestes du langage des signes, testant ainsi la robustesse du modèle face à des données incomplètes.</li>
+                            <li><strong>Scénario 2 :</strong> Nous avons avons entrainé le modèle sur un ensemble de données plus petit, puis nous l'avons testé sur l'ensemble de test constitué du reste des données (enregistrées par une personne différente). Nous avons ainsi pu évaluer la capacité du modèle à généraliser et à s'adapter à des données plus variées, confirmant ainsi la non-présence d'un biais de sur-apprentissage.</li>
+                            <li><strong>Scénario 3 :</strong> Nous avons entrainé le modèle sur un ensemble de données avec un nombre de capteurs réduit, se restraignant aux capteurs qui sont supposés garder des valeurs similaires pour les différents signes. L'objectif étant d'entrainer le modèle sur des données similaires, pour tester sa capacité à classifier les signes similaires, sans devoir ré-enregistrer de nouvelles données.</li>
+                        </ul>
+                        <p>Les résultats de ces scénarios sont présentés dans la section <a href="javascript:showContent('Notebooks')">Notebooks</a>.</p>
                         <p>
-                            &nbsp; &nbsp; Une étape cruciale du projet a été l'intégration réussie du matériel (des gants équipés de capteurs) avec notre système d'intelligence artificielle. Cette intégration a permis de capturer avec précision les mouvements de la main.
+                            &nbsp; &nbsp; Une étape cruciale du projet a été l'intégration réussie du matériel (des gants équipés de capteurs) avec notre système d'intelligence artificielle. Cette intégration a permis de capturer avec précision les mouvements de la main. Pour plus de détails sur cette intégration et sur le matériel utilisé, veuillez consulter la section <a href="https://github.com/MouadFiali/magic-gloves/wiki">Wiki</a> de notre dépôt Github.
                         </p>
                 </section>
     
