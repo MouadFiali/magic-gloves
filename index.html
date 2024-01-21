@@ -265,23 +265,67 @@
                 </section>
     
                 <section id="EvaluationEnv">
-                    <h1>4. Évaluation fine des aspects environnementaux et sociétaux</h1>
-                    <h4>4.1. Impacts environnementaux :</h4>
-                    <div>
-                    <ul>
-                        <li><b>Fabrication des Dispositifs :</b> Les gants eux-mêmes, sont fabriqués à partir de polymères et de textiles synthétiques, peuvent générer des déchets non biodégradables. De plus, l'utilisation de composants électroniques tels que les capteurs, les Arduino, les câbles, etc., peut contribuer à l'augmentation des déchets électroniques.</li></br>
-                        <li><b>Consommation d'Énergie :</b> Les dispositifs électroniques consomment de l'énergie, ce qui a des implications sur la demande énergétique globale. Il est crucial donc d'adopter des solutions économes en énergie pour minimiser l'impact environnemental.</li></br>
-                        <li><b>Fin de Vie et Recyclage :</b> La conception des gants doit tenir compte de leur durabilité et de leur recyclabilité. Cependant, ce critère n'a pas été pris en compte dans notre conceptions. L'adoption de designs modulaires et l'utilisation de matériaux recyclables peuvent faciliter le recyclage et réduire l'impact environnemental.</li>
-                    </ul>    
-                    </div>
-                    <h4>4.2. Impacts sociétaux :</h4>
-                    <div>
-                    <ul>
-                        <li><b>Inclusion Sociale :</b> En brisant les barrières de communication, les 'Magic Gloves' ont le potentiel d'accroître significativement l'inclusion sociale des personnes sourdes ou muettes. Cela peut ouvrir de nouvelles opportunités dans divers domaines de la vie et réduire le sentiment d'isolement.</li></br>
-                        <li><b>Opportunités Éducatives et Professionnelles :</b> L'amélioration de la communication peut ouvrir des portes vers de meilleures opportunités éducatives et professionnelles, contribuant ainsi à une société plus équitable.</li></br>
-                        <li><b>Sensibilisation et Éducation :</b> Le projet peut également sensibiliser le public à la diversité des besoins en communication et encourager une meilleure compréhension et acceptation des différences.</li>
-                    <ul>
-                    </div>
+                    <h1>4. Évaluation fine des aspects sociétaux et environnementaux</h1>
+                        <h3>4.1. Impacts sociétaux :</h4>
+                            <div>
+                                <p>En France, environ 80 000 personnes communiquent principalement par la langue des signes.<a href="#percentage-deaf" class="reference">[2]</a></p>
+                            <ul>
+                                <li><b>Inclusion Sociale :</b> En brisant les barrières de communication, les 'Magic Gloves' ont le potentiel d'accroître significativement l'inclusion sociale des personnes sourdes ou muettes. Cela peut ouvrir de nouvelles opportunités dans divers domaines de la vie et réduire le sentiment d'isolement.</li></br>
+                                <li><b>Opportunités Éducatives et Professionnelles :</b> L'amélioration de la communication peut ouvrir des portes vers de meilleures opportunités éducatives et professionnelles, contribuant ainsi à une société plus équitable.</li></br>
+                                <li><b>Sensibilisation et Éducation :</b> Le projet peut également sensibiliser le public à la diversité des besoins en communication et encourager une meilleure compréhension et acceptation des différences.</li>
+                            <ul>
+                            </div>
+
+                        <h3>4.2. Consommation Énergétique :</h4>
+                            <h4>4.2.1 Estimation de la Consommation Électrique et Émissions de CO2:</h4>
+                                <div>
+                                <ul>
+                                    <li><b>Arduino :</b> Un Arduino UNO, par exemple, consomme environ 50 mA sous 5V en fonctionnement normal. Avec deux Arduinos, cela équivaut à 100 mA.</li>
+                                    <li><b>Flex Sensors et Accéléromètres-Gyroscopes :</b> Les capteurs flexibles et les accéléromètres-gyroscopes consomment relativement peu d'énergie. Supposons une consommation additionnelle de 50 mA pour l'ensemble des capteurs et modules.</li>
+                                </ul>
+                                    <p>En totalisant, on peut estimer une consommation d'environ 150 mA sous 5V, soit une puissance d'environ 0.75 Watts (150 mA * 5V).</p>
+                                    <p>Le produit vise à être utilisé par 80 000 personnes<a href="#percentage-deaf" class="reference">[2]</a> et que la consommation estimée est de 150 mA sous 5V, alors la puissance totale peut être calculée comme suit :
+                                    </br>
+                                    <pre>
+                                    Puissance totale = (Consommation par personne * Nombre de personnes)
+
+                                    Puissance totale = (150 mA * 5V) * 80 000
+
+                                    Puissance totale = 750 mW * 80 000
+
+                                    Puissance totale = 60 000 W
+                                    </pre>
+                                    Donc, la puissance totale estimée pour 80 000 personnes serait de 60 000 watts, soit 60 kW.
+                                    </p>
+                                </div>
+
+                                <h4>4.2.2 Coût d'Utilisation :</h4>
+                                <div>
+                                <ul>
+                                    <li>Le coût énergétique dépend du tarif de l'électricité. Supposons un tarif moyen de 0.2276 euros par kWh en France<a href="#conso-kwh" class="reference">[3]</a>. Le coût pour une heure d'utilisation serait alors de 0.75 Wh * 0.2276 €/kWh = 0.0001707 euros.</li>
+                                    <li>Donc, le coût pour une heure d'utilisation totale estimé pour 80 000 personnes serait de 80 000 * 0.0001707 euros = 13.656 euros.</li>
+                                </ul>
+                                </div>
+
+                                <h4>4.2.3 Émissions de CO2 liées à l'Électricité :</h4>
+                                <div>
+                                <ul>
+                                    <li>Les émissions varient selon la source d'énergie. La moyenne est d'environ 290 gCO2/kWh (données de 2019)<a href="#conso-co2" class="reference">[4]</a>. Ainsi, pour une heure d'utilisation, les émissions seraient de 0.75 Wh * 290 gCO2/kWh = environ 0.22 gCO2.</li>
+                                    <li>Donc, les émissions totale estimées pour 80 000 personnes seraient de 80 000 * 0.22 gCO2 = 17.6 kgCO2 pour une heure d'utilisation.</p>
+                                </ul>
+                                </div>
+
+                        <h3>4.3. Impacts environnementaux :</h4>
+                            <div>
+                            <ul>
+                                <li>Les composants électroniques ont un impact environnemental lors de leur fabrication et élimination. Cependant, l'impact direct de l'utilisation des gants en termes de consommation énergétique est modéré.</li></br>
+                                <li>L'empreinte carbone de l'utilisation électrique est minime, surtout si l'électricité provient de sources renouvelables.</li></br>
+                                <li><b>Fabrication des Dispositifs :</b> Les gants eux-mêmes, sont fabriqués à partir de polymères et de textiles synthétiques, peuvent générer des déchets non biodégradables. De plus, l'utilisation de composants électroniques tels que les capteurs, les Arduino, les câbles, etc., peut contribuer à l'augmentation des déchets électroniques.</li></br>
+                                <li><b>Consommation d'Énergie :</b> Les dispositifs électroniques consomment de l'énergie, ce qui a des implications sur la demande énergétique globale. Il est crucial donc d'adopter des solutions économes en énergie pour minimiser l'impact environnemental.</li></br>
+                                <li><b>Fin de Vie et Recyclage :</b> La conception des gants doit tenir compte de leur durabilité et de leur recyclabilité. Cependant, ce critère n'a pas été pris en compte dans notre conceptions. L'adoption de designs modulaires et l'utilisation de matériaux recyclables peuvent faciliter le recyclage et réduire l'impact environnemental.</li>
+                            </ul>    
+                            </div>
+                    
                 </section>
 
                 <section id="bib">
@@ -291,6 +335,24 @@
                             <span class="authors">Kaggle,</span>
                             <span class="title">“Datasets”</span>
                             <em><a href="https://www.kaggle.com/datasets/birdy654/sign-language-recognition-leap-motion" target="_blank">Leap Motion ASL and BSL Sign Language Recognition</a></em>
+                        </li>
+
+                        <li id="percentage-deaf" class="citation">
+                            <span class="authors">Surdi Info,</span>
+                            <span class="title">“Des données françaises”</span>
+                            <em><a href="https://www.surdi.info/bibliographie/des-chiffres-autour-de-la-surdite/les-chiffres-de-la-surdite-et-de-la-perte-d-audition/#:~:text=6%2C6%20%25%20de%20la%20population,malentendants%20portent%20un%20appareil%20auditif" target="_blank">Les chiffres de la surdité et de la perte d'audition</a></em>
+                        </li>
+
+                        <li id="conso-kwh" class="citation">
+                            <span class="authors">jechange,</span>
+                            <span class="title">“Prix de l'électricité en France”</span>
+                            <em><a href="https://www.jechange.fr/energie/electricite/prix" target="_blank">Prix du kWh d'électricité en France en 2024 : tarifs et évolution</a></em>
+                        </li>
+
+                        <li id="conso-co2" class="citation">
+                            <span class="authors">energieplus-lesite,</span>
+                            <span class="title">“consommation énergétique”</span>
+                            <em><a href="https://energieplus-lesite.be/theories/consommation-energetique/les-emissions-de-polluants-liee-a-la-consommation-energetique/" target="_blank">Emissions de polluants liée à la consommation énergétique</a></em>
                         </li>
                     </ul>
                 </section>
