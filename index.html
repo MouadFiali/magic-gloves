@@ -253,15 +253,33 @@
                         <h4>3.2.1. RNN :</h4>
                         <ul>
                             <li><strong>Perte d’Entraînement et de Validation RNN :</strong> Le graphique de la montre la perte d'entraînement et de validation pour le modèle RNN au fil des époques. La courbe de perte d'entraînement et celle de validation affichent une diminution rapide au début de l'entraînement, suivie par une stabilisation, ce qui indique une convergence adéquate du modèle. La proximité des deux courbes suggère que le modèle n'est pas en surajustement et a bien généralisé aux données de validation.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/train-val-loss-rnn.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                             <li><strong>Précision d'Entraînement et de Validation RNN :</strong> Dans la figure ci-dessous, nous observons que la précision d'entraînement et de validation reste constante et très élevée après les premières époques, indiquant que le modèle est très précis et stable. La très faible différence entre les deux courbes montre que le modèle n'est pas en surajustement et performe bien sur les données non vues.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/tain-val-acc-rnn.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                             <li><strong>Métriques de Performance Numériques RNN :</strong> Les résultats numériques révèlent une précision exceptionnelle de 99.78% sur l'ensemble de test, avec une précision et un rappel parfaits de 1.00. Le score F1, qui équilibre la précision et le rappel, est également de 1.00, démontrant une performance optimale. La matrice de confusion dans la figure cu-dessous présente des valeurs élevées sur la diagonale principale, ce qui confirme l'excellente capacité de classification du modèle sans confusion significative entre les classes.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/conf-mat-rnn.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                         </ul>
 
                         <h4>3.2.2. LSTM :</h4>
                         <ul>
                             <li><strong>Perte d’Entraînement et de Validation LSTM :</strong> Le graphique de la perte d'entraînement et de validation ci-dessous offre un aperçu visuel de la capacité d'apprentissage du modèle sur les données. Dans le cadre de notre projet, le graphique de la perte ci-dessous montre une diminution significative de la perte d'entraînement et de validation au cours des époques, ce qui indique que le modèle s'améliore au fur et à mesure qu'il traite davantage de données. La convergence des deux lignes suggère que le modèle n'est pas en surajustement (overfitting), car la perte de validation suit de près la perte d'entraînement et les deux se stabilisent avec le temps.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/train-val-lost-lstm.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                             <li><strong>Précision d'Entraînement et de Validation LSTM :</strong> La précision d'entraînement et de validation (figure ci-dessous) fournit des informations sur la capacité du modèle à classifier correctement de nouvelles données. Le graphique montre que la précision d'entraînement augmente rapidement, tandis que la précision de validation atteint un plateau, ce qui peut indiquer un apprentissage efficace. Cependant, la présence d'un écart entre les deux courbes vers la fin des époques suggère un léger surajustement, où le modèle performe mieux sur les données d'entraînement que sur les données de validation.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/train-val-acc-lstm-.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                             <li><strong>Métriques de Performance Numériques LSTM :</strong> Les résultats quantitatifs du modèle LSTM sur l'ensemble de test sont très prometteurs. Avec une précision de 96.72%, et des scores de précision, de rappel et de F1-score tous au-delà de 0.97 (figure ci-dessous), ces résultats suggèrent que le modèle est très compétent pour classifier les gestes en langage des signes avec une grande exactitude.</li>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://github.com/MouadFiali/magic-gloves/blob/main/images/train-val-acc-lstm-.jpeg?raw=true" width="500px" alt="Magic Gloves logo">
+                            </div>
                         </ul>
 
                         <h3>3.3 Limites du modèle RNN</h3>
