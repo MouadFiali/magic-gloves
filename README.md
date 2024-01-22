@@ -1,7 +1,7 @@
 # Magic Gloves
 ## Description
 "Magic Gloves" is an innovative project aimed at translating sign language into spoken language using smart gloves equipped with sensors. This technology captures the intricate movements and positions of sign language and translates them into words, bridging communication gaps for the deaf and hard-of-hearing community. Our GitHub repository documents the development journey, including data collection, machine learning models, and hardware-software integration, showcasing our commitment to enhancing accessibility through AI and IoT.
-You can find more details (In french) about the project in the [wiki](https://github.com/MouadFiali/magic-gloves/wiki) section of this repository.
+You can find more details (In french) about the project in the [wiki](https://github.com/MouadFiali/magic-gloves/wiki) section of this repository and the [website](https://mouadfiali.github.io/magic-gloves/) of the project.
 
 ## Table of Contents
 - [Requirements](#requirements)
